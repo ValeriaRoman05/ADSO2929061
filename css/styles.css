@@ -73,6 +73,7 @@ body{
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-wrap: wrap;
       min-height: 100vh;
       color: var(--color-2);
 
@@ -100,6 +101,7 @@ body{
           header{
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
             gap: 1rem;
             h1{
