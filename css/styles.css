@@ -31,9 +31,9 @@ img, picture, svg, video, canvas{
     background-size: cover;
 }
 
-input, button, textarea, select{
-    font: inherit; 
-}
+/*input, button, textarea, select{
+    font: inherit;
+}*/
 
 @media (prefers-reduced-motion: reduce){
     html:focus-within {
