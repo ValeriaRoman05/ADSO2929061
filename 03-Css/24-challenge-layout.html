@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24-challenge  layout (Sprite)</title>
+    <style>
+      body {
+        border: 10px solid #ffffff;
+        background-color: #179f53;
+        font-family: sans-serif;
+        margin: 0;
+      }
+      header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      header figure.logo {
+        background: url(../imagenes/spriteweb.png) no-repeat;
+        background-position:  -10px -398px;
+        height: 192px;
+        width: 192px;
+      }
+      header menu {
+        display: flex;
+        gap: 1.2rem;
+      }
+      header menu a:is(:link, :visited) {
+        color: #fff;
+        background-color: #0006;
+        border-bottom: 4px solid #fff;
+        padding: 1rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        text-align: center;
+        transition: all 0.5s ease-in;
+        width: 120px;
+      }
+      header menu a:is(:hover) {
+        background-color: #0009;
+        border-bottom: 4px solid #ff0;
+      }
+      section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-top: 10px;
+        padding-left: 38px;
+      }
+      .imagenes {
+        width: 823px;
+        height: 200px;
+        display: flex;
+        padding: 5px 5px 10px 5px;
+        background-color: #0006;
+        .spam1 {
+            background: url(../Imagenes/spriteweb.png) ;
+            background-position: 300px -15px;
+            width: 300px;
+            margin: 10px;
+            border: #ffffff 4px solid;
+        }
+        .spam2 {
+            background-color: #fff5; 
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            text-align: center;
+            display: flex;
+            transition: all 0.5s ease-in;
+        }
+        .spam2:is(:hover) {
+            background-color: #fff9; 
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            text-align: center;
+            display: flex;
+            transition: all 0.5s ease-in;
+        }
+
+      }
+
+      footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        width: 836px;
+        margin: 0 auto;
+        margin-top: 2rem;
+        
+        
+      }
+      footer figure.logo {
+        background: url(../imagenes/spriteweb.png) no-repeat;
+        background-position:  -474px -416px;
+        height: 185px;
+        width: 330px;
+      }
+      footer menu {
+        display: flex;
+        gap: 1.2rem;
+        margin: 0;
+        padding: 0;
+      }
+      footer menu a:is(:link, :visited) {
+        color: black;
+        background-color: #fff;
+        border-bottom: 4px solid #fff;
+        padding: 1rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        text-align: center;
+        transition: all 0.5s ease-in;
+        width: 120px;
+      }
+      footer menu a:is(:hover) {
+        background-color: #0009;
+        border-bottom: 4px solid #ff0;
+      }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <figure class="logo"> </figure>
+            <menu>
+                <a href="#">Home</a>
+                <a href="#">Abaut</a>
+                <a href="#">Portfolio</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+            </menu>
+        </header>
+        <section>
+                <div class="imagenes">
+                    <spam class="spam1">
+                        <spam class="spam2">Sprite 01</spam>
+                    </spam>
+                    <spam class="spam1">
+                        <spam class="spam2">Sprite 02</spam>
+                    </spam>
+                    <spam class="spam1">
+                        <spam class="spam2">Sprite 03</spam>
+                    </spam>
+                </div>
+
+
+        </section>
+        <footer>
+            <figure class="logo"> </figure>
+            <menu>
+                <a href="#">Home</a>
+                <a href="#">Abaut</a>
+                <a href="#">Portfolio</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+            </menu>
+        </footer>
+    </main>
+</body>
+</html>
