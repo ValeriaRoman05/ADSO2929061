@@ -26,6 +26,8 @@
       header menu {
         display: flex;
         gap: 1.2rem;
+        margin: 0;
+        padding: 0;
       }
       header menu a:is(:link, :visited) {
         color: #fff;
@@ -47,24 +49,33 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding-top: 10px;
-        padding-left: 38px;
+        margin-top: 2rem;
       }
-      .imagenes {
+      .images {
         width: 823px;
         height: 200px;
         display: flex;
         padding: 5px 5px 10px 5px;
-        background-color: #0006;
+        background-color: #0009;
+
+        .spam1:is(:hover) .spam2{
+            background-color: rgba(236, 230, 230, 0.975);
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            text-align: center;
+            display: flex;
+            transition: all 0.5s ease-in;
+        }
         .spam1 {
-            background: url(../Imagenes/spriteweb.png) ;
+            background: url(../imagenes/spriteweb.png);
             background-position: 300px -15px;
             width: 300px;
             margin: 10px;
             border: #ffffff 4px solid;
         }
         .spam2 {
-            background-color: #fff5; 
+            background-color: #fff5;
             justify-content: center;
             align-items: center;
             height: 50px;
@@ -72,17 +83,54 @@
             display: flex;
             transition: all 0.5s ease-in;
         }
-        .spam2:is(:hover) {
-            background-color: #fff9; 
-            justify-content: center;
-            align-items: center;
-            height: 50px;
-            text-align: center;
-            display: flex;
-            transition: all 0.5s ease-in;
-        }
-
+        
       }
+      div.textos{
+            background-color: #0006;
+            margin-top:20px;
+            width: 823px;
+            display: flex;
+            flex-direction: column;
+            div.texto{
+                background-color: #fff;
+                padding: 0 5px 0 5px;
+                display: flex;
+                margin: 10px;
+                justify-content: space-between;
+                align-items: center;
+
+                
+                p{
+                    width: 470px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding-left: 30px;
+                    box-sizing: border-box;
+                    color: rgba(16, 9, 18, 0.61);
+                    transition: all 0.5s ease-in;
+                    text-align: justify;
+                }
+                p:is(:hover) {
+                    color: rgb(128, 49, 126);
+                }
+                
+                span.logo{
+                    width: 90px;
+                    height: 90px;
+                    background: url(../Imagenes/spriteweb.png);
+                    background-position: -290px -490px ;
+
+                }
+                span.lata{ 
+                    background:url(../Imagenes/spriteweb.png);
+                    background-position: 0 ;
+                    width: 200px;
+                    height: 200px;
+                }
+               
+       }
+}
 
       footer {
         display: flex;
@@ -93,8 +141,6 @@
         width: 836px;
         margin: 0 auto;
         margin-top: 2rem;
-        
-        
       }
       footer figure.logo {
         background: url(../imagenes/spriteweb.png) no-repeat;
@@ -109,7 +155,7 @@
         padding: 0;
       }
       footer menu a:is(:link, :visited) {
-        color: black;
+        color: #080808;
         background-color: #fff;
         border-bottom: 4px solid #fff;
         padding: 1rem;
@@ -120,8 +166,8 @@
         width: 120px;
       }
       footer menu a:is(:hover) {
-        background-color: #0009;
-        border-bottom: 4px solid #ff0;
+        background-color: rgba(255, 249, 249, 0.925);
+        border-bottom: 4px solid rgb(34, 128, 46);
       }
     </style>
 </head>
@@ -138,20 +184,40 @@
             </menu>
         </header>
         <section>
-                <div class="imagenes">
-                    <spam class="spam1">
-                        <spam class="spam2">Sprite 01</spam>
-                    </spam>
-                    <spam class="spam1">
-                        <spam class="spam2">Sprite 02</spam>
-                    </spam>
-                    <spam class="spam1">
-                        <spam class="spam2">Sprite 03</spam>
-                    </spam>
-                </div>
-
-
+            <div class="images">
+                <spam class="spam1">
+                    <spam class="spam2">Sprite 01</spam>
+                </spam>
+                <spam class="spam1">
+                    <spam class="spam2">Sprite 02</spam>
+                </spam>
+                <spam class="spam1">
+                    <spam class="spam2">Sprite 03</spam>
+                </spam>
+            </div>
+            <div class="textos">
+              <div class="texto">
+                  <span class="logo"></span>
+                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, repellendus quasi dolorem quisquam reprehenderit labore similique inventore iure provident cupiditate quia, id nobis, pariatur perferendis? Harum animi modi nihil corrupti!
+                  Error odit neque nemo alias. Veniam harum aspernatur quia ullam, esse consequatur sequi neque corporis sapiente eveniet alias unde natus minus, libero vero expedita repellendus veritatis nam quos. Quam, nulla.</p>
+                  <span class="lata"></span>
+              </div>
+              <div class="texto">
+                  <span class="logo"></span>
+                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, repellendus quasi dolorem quisquam reprehenderit labore similique inventore iure provident cupiditate quia, id nobis, pariatur perferendis? Harum animi modi nihil corrupti!
+                  Error odit neque nemo alias. Veniam harum aspernatur quia ullam, esse consequatur sequi neque corporis sapiente eveniet alias unde natus minus, libero vero expedita repellendus veritatis nam quos. Quam, nulla.</p>
+                  <span class="lata"></span>
+              </div>
+              <div class="texto">
+                  <span class="logo"></span>
+                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, repellendus quasi dolorem quisquam reprehenderit labore similique inventore iure provident cupiditate quia, id nobis, pariatur perferendis? Harum animi modi nihil corrupti!
+                  Error odit neque nemo alias. Veniam harum aspernatur quia ullam, esse consequatur sequi neque corporis sapiente eveniet alias unde natus minus, libero vero expedita repellendus veritatis nam quos. Quam, nulla.</p>
+                  <span class="lata"></span>
+              </div>
+             
+</div>
         </section>
+        
         <footer>
             <figure class="logo"> </figure>
             <menu>
