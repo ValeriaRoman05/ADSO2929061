@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>40 - steps</title>
+    <link rel="stylesheet" href="../css/Styles.css">
+    <style>
+        :root{
+            --size-step: calc(1024px/4)
+        }
+        section div.bg{
+            background: url(../Imagenes/casita.jpg)
+                        no-repeat center /cover;
+            border-radius: 4px;
+            height: 700px;
+            margin: 0.2rem auto;
+            width: 500px;
+        }
+
+        section div.bg div.steps{
+            background: url(../Imagenes/muñeco.jpg) no-repeat;
+            height: var(--size-step);
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: var(--size-step);
+
+            animation: animSteps 0.5s steps(4) infinite ;
+        }
+
+        section div.bg div.steps.front{
+            background-position-y: calc(var(--size-casita) *0);
+        }
+        section div.bg div.steps.left{
+            background-position-y: calc(var(--size-casita) *-1);
+        }
+        section div.bg div.steps.right{
+            background-position-y: calc(var(--size-casita) *-2);
+        }
+        section div.bg div.steps.back{
+            background-position-y: calc(var(--size-casita) *-3);
+        }
+
+        @keyframes animSteps{
+            100%{
+                background-position-x: -1024px;
+
+            }
+        }
+    </style>
+</head>
+<body class="Css">
+    <nav>
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>40 - steps</h1>
+            <h2>Allows step-by-step animation of a sprite.</h2>
+        </header>
+        <section>
+          
+            <div class="bg">
+                <div class="steps front"></div>
+            </div>
+            <div class="controls">
+                <div class="header">
+                    <button class="btnBack">▲</button>
+                </div>
+                <div class="footer">
+                    <button class="btnLeft">◀</button>
+                    <button class="btnFront">▼</button>
+                    <button class="btnRight">▶</button>
+                </div>
+            </div>
+        </section>
+        
+    </main>
