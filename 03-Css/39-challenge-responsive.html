@@ -21,14 +21,33 @@
       flex-wrap: wrap;
       justify-content: center;
 
-      .spam1:is(:hover) .spam2 {
-        background-color: rgba(236, 230, 230, 0.975);
-        justify-content: center;
-        align-items: center;
-        height: 50px;
-        text-align: center;
+      div.two {
         display: flex;
-        transition: all 0.5s ease-in;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+
+
+      spam.Ryuk:is(:hover) .spam2 {
+        height: 60px;
+        transition: all ease-in 0.4s;
+      }
+
+      spam.light:is(:hover) .spam2 {
+        height: 60px;
+        transition: all ease-in 0.4s;
+      }
+
+      spam.L:is(:hover) .spam2 {
+        height: 60px;
+        transition: all ease-in 0.4s;
+      }
+
+      spam.misa:is(:hover) .spam2 {
+        height: 60px;
+        transition: all ease-in 0.4s;
       }
 
       spam.Ryuk {
@@ -38,6 +57,9 @@
         width: 200px;
         margin: 10px;
         border: #ffffff 4px solid;
+        transition: all 0.5s ease-in;
+        background-color: #ffffff;
+        position: relative;
       }
 
       spam.light {
@@ -48,6 +70,7 @@
         width: 200px;
         margin: 10px;
         border: #ffffff 4px solid;
+        position: relative;
       }
 
       spam.L {
@@ -57,6 +80,7 @@
         width: 200px;
         margin: 10px;
         border: #ffffff 4px solid;
+        position: relative;
       }
 
       spam.Misa {
@@ -67,6 +91,7 @@
         width: 200px;
         margin: 10px;
         border: #ffffff 4px solid;
+        position: relative;
       }
 
       .spam2 {
@@ -77,7 +102,10 @@
         height: 50px;
         text-align: center;
         display: flex;
-        transition: all 0.5s ease-in;
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+
       }
 
     }
@@ -98,100 +126,141 @@
       margin: 0;
       padding: 0;
     }
-div.all{
-  display: flex;
-  flex-direction: column;
-}
-    div.text {
+
+    div.all {
       display: flex;
-      flex-direction: row;
-      margin-left: 100px;
-      background-color: #ffffff93;
-      width: 1000px;
-      margin-top: 20px;
-
-      img {
-        width: 200px;
-        height: 200px;
-      }
-
-      div {
-        height: 200px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      div.text {
         display: flex;
-        flex-direction: column;
-        margin-left: 20px;
+        flex-direction: row;
+        background-color: #ffffff93;
+        margin-top: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+
+        div.ci {
+          display: flex;
+          flex-direction: column;
+          width: 450px;
+          
+          align-items: center;
+        }
+
+        img {
+          width: 314px;
+
+
+        }
+
+
       }
     }
 
-    @media (max-widht:860px) {
-      .images{
-        width: 700px;
+    @media (max-width: 768px) {
+
+      div.ci {
+        width: 400px;
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+
+      div.all {
+        div.text {
+          padding-left: 30px;
+          padding-right: 30px;
+          img {
+            width: 250px;
+
+          }
+        }
+
       }
     }
 
-    @media (max-widht:400px) {
-      .images{
+    @media (max-width: 576px) {
+
+      div.ci {
         width: 300px;
+        padding-left: 30px;
+        padding-right: 30px;
+
+      }
+
+      div.all {
+        div.text {
+          padding-left: 30px;
+          padding-right: 30px;
+          img {
+            width: 150px;
+          }
+        }
+
       }
     }
-    
   </style>
 </head>
 
 <body>
   <main>
     <div class="logo"> <img src="../Imagenes/logo deathnote.png" alt="Death Note"></div>
-    <section>
-      <div class="images">
+
+    <div class="images">
+      <div class="two">
         <spam class="Ryuk">
           <spam class="spam2">Ryuk</spam>
         </spam>
         <spam class="light ">
           <spam class="spam2">Light Yagami </spam>
         </spam>
+      </div>
+      <div class="two">
         <spam class="L">
           <spam class="spam2">L</spam>
         </spam>
         <spam class="Misa">
           <spam class="spam2">Misa</spam>
         </spam>
-
       </div>
-      <div class="all">
-        <div class="seccion">
 
+
+    </div>
+    <div class="all">
+      <div class="text">
+        <img src="../imagenes/grupo.jpeg" alt="">
+        <div class="ci">
+          <h3>Grupo</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, neque? Minima a, cumque officia
+            exercitationem quos animi recusandae at itaque rerum. Aliquid obcaecati exercitationem quibusdam eum
+            dolorum blanditiis architecto facilis.</p>
         </div>
-        <div class="text">
-          <img src="../imagenes/grupo.jpeg" alt="">
-          <div>
-            <h3>Grupo</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, neque? Minima a, cumque officia
-              exercitationem quos animi recusandae at itaque rerum. Aliquid obcaecati exercitationem quibusdam eum
-              dolorum blanditiis architecto facilis.</p>
-          </div>
+      </div>
+      <div class="text">
+        <img src="../Imagenes/grupo2.jpeg" alt="">
+        <div class="ci">
+          <h3>Grupo opcional</h3>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto, tempore corrupti quisquam eaque saepe
+            eum error, dicta recusandae voluptate ea non accusantium repellendus quo deleniti ipsum vitae ipsam
+            praesentium nesciunt?</p>
         </div>
-        <div class="text">
-          <img src="../Imagenes/grupo2.jpeg" alt="">
-          <div>
-            <h3>Grupo opcional</h3>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto, tempore corrupti quisquam eaque saepe
-              eum error, dicta recusandae voluptate ea non accusantium repellendus quo deleniti ipsum vitae ipsam
-              praesentium nesciunt?</p>
-          </div>
-        </div>
-        <div class="text">
+      </div>
+      <div class="text">
         <img src="../Imagenes/Tsugumi Ōba.webp" alt="">
-        <div>
+        <div class="ci">
           <h3>Tsugumi Ōba (creador) </h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quibusdam minus sequi esse beatae quae distinctio excepturi sed sunt velit veritatis, est dolor doloremque, incidunt quo ad id voluptatibus perspiciatis?</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quibusdam minus sequi esse beatae quae
+            distinctio excepturi sed sunt velit veritatis, est dolor doloremque, incidunt quo ad id voluptatibus
+            perspiciatis?</p>
         </div>
-        </div>
-
-
       </div>
 
-      </div>
-    </section>
+
+    </div>
+
+
+
 
 
   </main>
