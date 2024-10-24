@@ -80,3 +80,54 @@
         </section>
         
     </main>
+    <script>
+        let btnFront = document.querySelector('.btnFront')
+        let btnBack  = document.querySelector('.btnBack')
+        let btnLeft  = document.querySelector('.btnLeft')
+        let btnRight = document.querySelector('.btnRight')
+
+        let steps    = document.querySelector('.steps')
+
+        btnFront.addEventListener('click', () => {
+            removeAllClasses()
+            steps.classList.add('front')
+        })
+
+        btnBack.addEventListener('click', () => {
+            removeAllClasses()
+            steps.classList.add('back')
+        })
+
+        btnLeft.addEventListener('click', () => {
+            removeAllClasses()
+            steps.classList.add('left')
+        })
+
+        btnRight.addEventListener('click', () => {
+            removeAllClasses()
+            steps.classList.add('right')
+        })
+
+        function removeAllClasses() {
+            steps.classList.remove('front', 'back', 'left', 'right')
+        }
+
+        document.addEventListener('keyup', function(e) {
+            if(e.keyCode == 37) {
+                removeAllClasses()
+                steps.classList.add('left')
+            }
+            if(e.keyCode == 38) {
+                removeAllClasses()
+                steps.classList.add('back')
+            }
+            if(e.keyCode == 39) {
+                removeAllClasses()
+                steps.classList.add('right')
+            }
+            if(e.keyCode == 40) {
+                removeAllClasses()
+                steps.classList.add('front')
+            }
+        })
+    </script>

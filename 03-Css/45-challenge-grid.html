@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>00-Template</title>
+    <link rel="stylesheet" href="../css/styles.css">
+   
+    <style>
+      body {
+display: grid;
+place-items: center;
+min-height: 100dvh
+}
+div {
+display: grid;
+place-items: center;
+/*
+grid-template-columns: repeat(3, 140px);
+grid-template-rows: repeat(3, 140px);
+*/
+grid-template-areas: 
+    "img01 img02 img03"
+    "img04 img02 img05"
+    "img06 img06 img07";
+margin: 2rem auto;
+width: calc(140px * 3);
+gap: 8px;
+}
+
+div img {
+border-radius: 4px;
+outline: solid #000;
+object-fit: cover;
+height: 140px;
+width: 140px;
+}
+
+div.grid1 img.img01 {
+grid-area: img01;
+}
+div.grid1 img.img02 {
+grid-area: img02;
+height: calc(140px * 2 + 8px);
+}
+div.grid1 img.img03 {
+grid-area: img03;
+}
+div.grid1 img.img04 {
+grid-area: img04;
+}
+div.grid1 img.img05 {
+grid-area: img05;
+}
+div.grid1 img.img06 {
+grid-area: img06;
+width: calc(140px * 2 + 8px);
+}
+div.grid1 img.img07 {
+grid-area: img07;
+}
+div.grid2{
+display: grid;
+place-items: center;
+/*
+grid-template-columns: repeat(3, 140px);
+grid-template-rows: repeat(3, 140px);
+*/
+grid-template-areas: 
+    "img01 img01 img02 img03"
+    "img01 img01 img04 img04"
+    "img05 img06 img04 img04";
+margin: 2rem auto;
+width: calc(140px * 3);
+gap: 8px;
+}
+div img {
+border-radius: 4px;
+outline: solid #000;
+object-fit: cover;
+height: 140px;
+width: 140px;
+}
+
+div.grid2 img.img01 {
+grid-area: img01;
+height: calc(140px * 2 + 8px);
+width: calc(140px * 2 + 8px);
+}
+div.grid2 img.img02 {
+grid-area: img02;
+}
+div.grid2 img.img03 {
+grid-area: img03;
+}
+div.grid2 img.img04 {
+grid-area: img04;
+width: calc(140px * 2 + 8px);
+height: calc(140px * 2 + 8px);
+}
+div.grid2 img.img05 {
+grid-area: img05;
+}
+div.grid2 img.img06 {
+grid-area: img06;
+}
+
+</style>
+
+</head>
+<body class="Css">
+<main>
+    <nav><a href="index.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></a></nav>
+    <header>
+        <h1>45-challenge-grid</h1>
+        <h2>This tag allows you to insert audio</h2>
+     </header>
+     <section>
+        <div class="grid1">
+            <img src="https://is4-ssl.mzstatic.com/image/thumb/3TDhw3QBz90QgFypofxWXA/1200x675.jpg" class="img01">
+            <img src="https://somoskudasai.com/wp-content/uploads/2019/09/Kimetsu-no-Yaiba-anime-image-2.jpg" class="img02">
+            <img src="https://tse1.mm.bing.net/th?id=OIP.UyHfcv3FBLzxXpEd91eNzgHaFb&pid=Api&P=0&h=180" class="img03">
+            <img src="https://tse2.mm.bing.net/th?id=OIP.vns-PT4uFT7B7jYrEEZhQwHaFL&pid=Api&P=0&h=180" class="img04">
+            <img src="https://tse2.mm.bing.net/th?id=OIP.y2hE-crQFwY7bp53mOvYSAHaFy&pid=Api&P=0&h=180" class="img05">
+            <img src="https://tse2.mm.bing.net/th?id=OIP.S18H_j3Wnzt-JIz_E-NpFAHaE8&pid=Api&P=0&h=180" class="img06">
+            <img src="https://tse2.mm.bing.net/th?id=OIP.XOBn__1XNo6RxQOwrFpMswAAAA&pid=Api&P=0&h=180" class="img07">
+          
+        </div>
+
+        <div class="grid2">
+            <img src="https://tse3.mm.bing.net/th?id=OIP.xv50gMZh6M-lXjR-qDW2WgHaEh&pid=Api&P=0&h=180" class="img01">
+            <img src="https://tse4.mm.bing.net/th?id=OIP.IkLTvkDVirvaeCNuwlXgfQHaEL&pid=Api&P=0&h=180" class="img02">
+            <img src="https://tse2.mm.bing.net/th?id=OIP.cDLPEnhTPrdWyVQa9jFFDwHaG3&pid=Api&P=0&h=180" class="img03">
+            <img src="https://anuiesvalledebravo.mx/wp-content/uploads/reestreno-extrano.-mundo-de-jack-683x1024.jpg" class="img04">
+            <img src="https://tse1.mm.bing.net/th?id=OIP.GWuafzwlge-SMm8W3MTSyAHaEK&pid=Api&P=0&h=180" class="img05">
+            <img src="https://tse2.mm.bing.net/th?id=OIP.lFOMZl4JUguTGmcGQU8bpgHaFj&pid=Api&P=0&h=180" class="img06">
+            
+          
+        </div>
+     
+     </section>
+  </body>
+  </html>
