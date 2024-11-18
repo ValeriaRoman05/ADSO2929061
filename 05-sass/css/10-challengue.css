@@ -1,79 +1,84 @@
-#menu__toggle {
-    opacity: 0;
-  }
-  #menu__toggle:checked ~ .menu__btn > span {
-    transform: rotate(45deg);
-  }
-  #menu__toggle:checked ~ .menu__btn > span::before {
-    top: 0;
-    transform: rotate(0);
-  }
-  #menu__toggle:checked ~ .menu__btn > span::after {
-    top: 0;
-    transform: rotate(90deg);
-  }
-  #menu__toggle:checked ~ .menu__box {
-    visibility: visible;
-    left: 0;
-  }
-  
-  .menu__btn {
-    display: flex;
-    align-items: center;
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    width: 26px;
-    height: 26px;
-    cursor: pointer;
-    z-index: 1;
-  }
-  .menu__btn > span,
-  .menu__btn > span::before,
-  .menu__btn > span::after {
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background-color: #874977;
-    transition-duration: 0.25s;
-  }
-  .menu__btn > span::before {
-    content: "";
-    top: -8px;
-  }
-  .menu__btn > span::after {
-    content: "";
-    top: 8px;
-  }
-  
-  .menu__box {
-    display: block;
-    position: fixed;
-    visibility: hidden;
-    top: 0;
-    left: -100%;
-    width: 300px;
-    height: 100%;
-    margin: 0;
-    padding: 80px 0;
-    list-style: none;
-    background-color: rgba(67, 32, 32, 0.741);
-    box-shadow: 1px 0px 6px rgba(124, 52, 52, 0.781);
-    transition-duration: 0.25s;
-  }
-  
-  .menu__item {
-    display: block;
-    padding: 12px 24px;
-    color: #333;
-    font-family: "Roboto", sans-serif;
-    font-size: 20px;
-    font-weight: 600;
-    text-decoration: none;
-    transition-duration: 0.25s;
-    color: #f5f8fa;
-  }
-  .menu__item:hover {
-    background-color: #9b5580;
-  }
+body{margin:0;
+  font-family:Helvetica,sans-serif;
+  background-color:#513e5f}
+body a{color:#252222}
+
+.header{background-color:#2a2a2a;
+  box-shadow:3px 3px 10px 0 rgba(0,0,0,.544);
+  position:fixed;width:100%;
+  z-index:3}
+
+.header ul{margin:0;
+  padding:0;
+  list-style:none;
+  overflow:hidden;
+  background-color:#74486e}
+
+.header li a{color:#fff;
+  display:block;
+  padding:20px 20px;
+  border-right:1px solid #f5e9e9;
+  text-decoration:none}
+
+.header li a:hover{background-color:#c24edc
+  ;color:#000}
+
+.header .logo{color:#8a4a7c;
+  display:block;
+  float:left;
+  font-size:2em;
+  padding:10px 20px;
+  text-decoration:none}
+
+.header .menu{clear:both;
+  max-height:0;
+  transition:max-height .2s ease-out}
+
+  .header .menu-icon{cursor:pointer;
+    display:inline-block;
+    float:right;
+    padding:26px 20px;
+    position:relative;
+    user-select:none}
+
+    .header .menu-icon .navicon{background:#c24edc;
+      display:block;
+      height:2px;
+      position:relative;
+      transition:backgroun .2s ease-out;
+      width:18px}
+      
+      .header .menu-icon .navicon:hover{background:#e8e6e6}
+      
+      .header .menu-icon .navicon:before,.header .menu-icon .navicon:after{background:#c24edc;
+        content:"";
+        display:block;
+        height:100%;
+        position:absolute;
+        transition:all .2s ease-out;
+        width:100%;}
+        
+        .header .menu-icon .navicon:before:hover,.header .menu-icon .navicon:after:hover{
+          background:#fff;}
+
+        .header .menu-icon .navicon:before{
+          top:5px;}
+
+        .header .menu-icon .navicon:after{
+          top:-5px;}
+
+        .header .menu-btn{
+          display:none;}
+
+        .header .menu-btn:checked~.menu{
+          max-height:240px;}
+        
+        .header .menu-btn:checked~.menu-icon .navicon{
+          background:rgba(0,0,0,0);}
+        
+        .header .menu-btn:checked~.menu-icon .navicon:before{
+          transform:rotate(-45deg);}
+        
+        .header .menu-btn:checked~.menu-icon .navicon:after{
+          transform:rotate(45deg)}
+        .header .menu-btn:checked~.menu-icon .navicon:not(.steps):before,.header .menu-btn:checked~.menu-icon .navicon:not(.steps):after{top:0}@media(min-width: 855px){.header li{float:left}.header li a{padding:20px 30px}.header .menu{clear:none;float:right;max-height:none}.header .menu-icon{display:none}
