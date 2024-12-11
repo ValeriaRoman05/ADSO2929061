@@ -81,16 +81,24 @@ body{
       min-height: 100vh;
       color: var(--color-2);
 
-      nav{
+      nav:not(.nav) {
         position: fixed;
         top: 20px;
         left: 20px;
         a:is(:link, :visited) {
-            display:flex;
+            border-radius: 4px;
+            background-color: var(--color-1);
+            display: flex;
             justify-content: center;
-            align-items:center;
+            align-items: center;
+            transition: all 0.4s ease-in;
             height: 40px;
             width: 40px;
+            svg {
+                opacity: 0.7;
+                transition: all 0.4s ease-in;
+                width: 24px;
+            }
 
         }
         a:is(hover) svg {
