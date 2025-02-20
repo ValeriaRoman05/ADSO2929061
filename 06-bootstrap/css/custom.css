@@ -1,0 +1,33 @@
+nav.navbar.bg-custom {
+    background-color: #914CA4;
+    a.navbar-brand,
+    a.nav-link {
+        color: rgb(241, 244, 247);
+    }
+}
+/* Hero Section */
+div.row.hero {
+    padding-top: 102px ;
+    div.col:nth-child(1) {
+        background-color: #9B5CA1 ; 
+        height: 680px;
+        h3, p {
+            color: rgb(8, 8, 8);
+        }
+        h2 {
+            color:aliceblue;
+        }
+        p.text-justify {
+            text-align: justify;
+        }
+        a.btn.bg-custom {
+            background-color: #615656;
+            color: aliceblue;
+        }
+    }
+}
+div.col:nth-child(2) {
+    background: #C890CC url(../06-challenge/imagenes/hero-picture.png) no-repeat center bottom ;
+   
+    height: 680px;
+}
