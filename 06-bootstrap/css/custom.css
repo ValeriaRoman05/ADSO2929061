@@ -25,9 +25,54 @@ div.row.hero {
             color: aliceblue;
         }
     }
+    div.col:nth-child(2) {
+        background: #C890CC url(../06-challenge/imagenes/hero-picture.png) no-repeat center bottom ;
+       
+        height: 680px;
+    }
 }
-div.col:nth-child(2) {
-    background: #C890CC url(../06-challenge/imagenes/hero-picture.png) no-repeat center bottom ;
-   
-    height: 680px;
+
+/* about*/
+div.row.about {
+    div.col:nth-child(2) {
+        background-color: #C17FDD ; 
+        height: 680px;
+        padding: 50px;
+        gap: 1rem;
+        h3, p {
+            color: rgb(8, 8, 8);
+        }
+        h2 {
+            color:aliceblue;
+        }
+        p.text-justify {
+            text-align: justify;    
+        }
+        .progress-bar.bg-custom {
+            background-color: #6E2F89;
+        }
+    }
+    div.col:nth-child(1) {
+        background: #C17FDD url(../06-challenge/imagenes/about.png) no-repeat center bottom ;
+       
+        height: 680px;
+    }
+    
 }
+/* ser5vices */
+div.services {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    div{
+        div.col{
+            height: 200px;
+            width: 340px;
+        }
+    }
+}
+
+
+
+
