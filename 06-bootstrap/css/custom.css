@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'Poppins-400';
+    src: url(../../fonts/Poppins-400.ttf);
+}
+@font-face {
+    font-family: 'Poppins-600';
+    src: url(../../fonts/Poppins-600.ttf);
+}
+
 nav.navbar.bg-custom {
     background-color: #914CA4;
     a.navbar-brand,
@@ -60,17 +69,21 @@ div.row.about {
     
 }
 /* ser5vices */
-div.services {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    div{
-        div.col{
-            height: 200px;
-            width: 340px;
-        }
-    }
+/* Services section */
+div.row.services {
+    background-color: #9465AA;
+}
+
+/* Portfolio */
+div.row.portfolio {
+    background-color: #CBA7E7;
+}
+.bg-gray-500{
+    background-color: #FBF3F3;
+}
+
+.footer{
+    background-color: #8B47A3;
 }
 
 
