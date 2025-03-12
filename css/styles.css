@@ -215,11 +215,7 @@ body {
 
             }
 
-            /* inactiva los iconos */
-            a.inactive {
-                opacity: 0.4;
-                pointer-events: none;
-            }
+            
 
             /* */
         }
@@ -565,10 +561,6 @@ body.tailwind {
                 span {
                     background-color: #35BEF8;
                 }
-            }
-            a.inactive{
-                opacity: 0.4;
-                pointer-events: none;
             }
 
         }
