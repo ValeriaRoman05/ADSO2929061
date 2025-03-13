@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>13- Layout (Challenge)</title>
+     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+     <link rel="stylesheet" href="tailwind.config.js">
+ </head>
+ <body class="bg-[#1e1e1e]">
+     <main class="min-h-[100dvh]
+                  flex 
+                  justify-center 
+                  items-center">
+         <!-- Screen 01 - Welcome -->
+         <section class="welcome 
+                         w-[386px] 
+                         h-[760px]
+                         my-4
+                         bg-contain
+                        
+                         rounded-[20px]
+                         overflow-hidden
+                         bg-[url(imagenes/moto4.png)]
+                         
+                         bg-[white]
+                         relative
+                         bg-top
+                         bg-no-repeat">
+             <div class="absolute
+                         rounded-t-[30px]
+                         bottom-0
+                         w-full
+                         h-[396px]
+                         bg-white">
+ 
+                     <figure class="logo
+                                 h-[100px]
+                                 w-[100px]
+                                 mx-auto
+                                 mt-[-50px]
+                                 bg-red-800
+                                 justify-center
+                                flex
+                                row">
+                                <img src="imagenes/Union.svg" alt="">
+                     </figure>
+                     <h2 class="text-center
+                                text-[32px]
+                                mt-[30px]
+                                font-[600]
+                                text-[#141414]">Welcome to</h2>
+                    <h2 class="text-center
+                                text-[32px]
+                                font-[600]
+                                text-[#822424]">Ducati</h2>
+                    <h4 class="text-center
+                                mt-[30px]
+                                font-[300px]
+                                text-[#1a1919]">Enjoy the Wine That What You Want  When You Want</h4>
+                    <div class="actions
+                                w[320px]
+                                flex
+                                mt-[42px]
+                                mx-auto">
+                        <a href="" class="w-[160px]
+                                        h-[55px]
+                                        flex
+                                        items-center
+                                        text-center
+                                        font[600]
+                                        rounded-s-[25px]
+                                        bg-[#8d2929]">
+                                        inscribirse
+                                    </a>    
+                                    <a href="" class="w-[160px]
+                                    h-[55px]
+                                    flex
+                                    items-center
+                                    text-center
+                                    text-black
+                                    font[600]
+                                    rounded-e-[25px]
+                                    bg-[#e1dede]">
+                                    inicar sesion
+                                </a>    
+                            </div>
+ 
+             </div>
+         </section>
+         <section class="sesion">
+
+         </section>
+         <section class="inscribir">
+
+         </section>
+
+
+         <!-- Screen 02 - Signin -->
+         <section class="signin"></section>
+         <!-- Screen 03 - Signup -->
+         <section class="signup"></section>
+     </main>
+     <script src="js/tailwind.js"></script>
+ </body>
+</html>
