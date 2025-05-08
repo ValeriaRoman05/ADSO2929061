@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>13-challenge-calculator</title>
+  <link rel="shortout icon" href="favicon.ico" type="imagenes/x-icon">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    div.calcu {
+      background-color: #ece8e8;
+      border-radius: 30px;
+      height: 610px;
+      margin: 0 auto;
+      width: 360px;
+      transition: all 0.5s ease-in;
+
+      header {
+        position: relative;
+        border: 2px solid;
+        margin: 0 auto;
+        width: 336px;
+        height: 168px;
+
+        button.btn-mode {
+          border: none;
+          background: url(calcu/01-Challenge-Calculator-JS/btn-moon.svg) no-repeat center;
+          cursor: pointer;
+          position: absolute;
+          top: 8px;
+          height: 36px;
+          width: 100px;
+          transition: transform 0.2s ease-in;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+
+        input.operation{
+          color:#0b0a0a;
+          font-size: 18px;
+          position: absolute;
+          top: 80px;
+          width: 100%;
+          text-align: right;
+          font-weight: 500;
+          border: none;
+          outline: none;
+          background-color: transparent;
+        }
+        h4.result{
+          position: absolute;
+          color: #000;
+          font-size: 40px;
+          font-family: 'Poppins';
+          font-weight: 400;
+          right: 0;
+          top: 100px;    
+        }
+
+
+
+      }
+      footer {
+                display: grid;
+                grid-template-columns: repeat(4, 80px);
+                gap: 5px;
+                width: 360px;
+                margin: 0.6rem auto 0 auto;
+
+                button {
+                    border: none;
+                    cursor: pointer;
+                    opacity: 0.8;
+                    height: 80px;
+                    border-radius: 15px;
+                    background-color: #989393;
+                    transition: all 0.2s ease-in;
+
+                    &:hover {
+                        opacity: 1;
+                        transform: scale(1.1);
+                    }
+
+                    &.btn-clear {
+                        background: url(calcu/01-Challenge-Calculator-JS/btn-clear.svg) no-repeat center;
+                    }
+                    &.btn-del {
+                        background: url(calcu/01-Challenge-Calculator-JS/btn-del.svg) no-repeat center;
+                    }
+                    &.btn-pow {
+                        background: url(calcu/01-Challenge-Calculator-JS/btn-pow.svg) no-repeat center;
+                    }
+                    &.btn-mod {
+                        background: url(calcu/01-Challenge-Calculator-JS/btn-mod.svg) no-repeat center;
+                    }
+
+                    &.btn-1 {
+                        background: url(calcu/01-Challenge-Calculator-JS/btn-1.svg) no-repeat center;
+                    }
+                    &.btn-2 {
+                        background: url(calcu/01-Challenge-Calculator-JS/btn-2.svg) no-repeat center;
+                    }
+                    &.btn-3 {
+                        background: url(calcu/01-Challenge-Calculator-JS/btn-3.svg) no-repeat center;
+                    }
+                    &.btn-mult {
+                        background: url(calcu/01-Challenge-Calculator-JS/btn-mult.svg) no-repeat center;
+                    }
+                    &.btn-4 {
+                        background: url(calcu/01-Challenge-Calculator-JS/btn-4.svg) no-repeat center;
+                    }
+                    &.btn-5 {
+                        background: url(calcu/01-Challenge-Calculator-JS/btn-5.svg) no-repeat center;
+                    }
+                    &.btn-6 {
+                        background: url(calcu/01-Challenge-Calculator-JS/btn-6.svg) no-repeat center;
+                    }
+                    &.btn-subs {
+                        background: url(calcu/01-Challenge-Calculator-JS/btn-subs.svg) no-repeat center;
+                    }
+                    &.btn-7 {
+                        background: url(calcu/01-Challenge-Calculator-JS/btn-7.svg) no-repeat center;
+                    }
+                    &.btn-8 {
+                        background: url(calcu/01-Challenge-Calculator-JS/btn-8.svg) no-repeat center;
+                    }
+                    &.btn-9 {
+                        background: url(calcu/01-Challenge-Calculator-JS/btn-9.svg) no-repeat center;
+                    }
+                    &.btn-plus {
+                        background: url(calcu/01-Challenge-Calculator-JS/btn-plus.svg) no-repeat center;
+                    }
+                    &.btn-div {
+                        background: url(calcu/01-Challenge-Calculator-JS/btn-div.svg) no-repeat center;
+                    }
+                    &.btn-0 {
+                        background: url(calcu/01-Challenge-Calculator-JS/btn-0.svg) no-repeat center;
+                    }
+                    &.btn-point {
+                        background: url(calcu/01-Challenge-Calculator-JS/btn-point.svg) no-repeat center;
+                    }
+                    &.btn-equal {
+                        background: url(calcu/01-Challenge-Calculator-JS/btn-equal.svg) no-repeat center;
+                    }
+                    
+                }
+
+
+            }
+            /*dark mode*/
+            &.dark {
+                background-color: #000;
+                header{
+                    input.operation{
+                        color: #fff;
+                    }
+                    h4.result{
+                        color: #fff;
+                    }
+                }
+                footer{
+                    button{
+                        opacity: 0.5;
+                        &:hover {
+                            opacity: 1;
+                            transform: scale(1.1);
+                        }
+                    }
+               }
+}
+
+
+    }
+  </style>
+</head>
+
+<body class="js">
+  <nav>
+    <a href="../index.html">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+        <path fill="#ffffff"
+          d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z">
+        </path>
+      </svg>
+    </a>
+  </nav>
+  <main>
+    <header>
+      <h1>13-challenge-calculator</h1>
+      <h2></h2>
+    </header>
+    <section>
+      <div class="calcu">
+        <header>
+          <button class="btn-mode"></button>
+          <input type="text" class="operation" value="308 x 42" readonly>
+          <h4 class="result">12.</h4>
+        </header>
+        <footer>
+          <button class="btn-clear"></button>
+          <button class="btn-del"></button>
+          <button class="btn-pow" data-opr="^"></button>
+          <button class="btn-mod" data-opr="%"></button>
+          <button class="btn-1" data-num="1"></button>
+          <button class="btn-2" data-num="2"></button>
+          <button class="btn-3" data-num="3"></button>
+          <button class="btn-mult" data-opr="*"></button>
+          <button class="btn-4" data-num="4"></button>
+          <button class="btn-5" data-num="5"></button>
+          <button class="btn-6" data-num="6"></button>
+          <button class="btn-subs" data-opr="-"></button>
+          <button class="btn-7" data-num="7"></button>
+          <button class="btn-8" data-num="8"></button>
+          <button class="btn-9" data-num="9"></button>
+          <button class="btn-plus" data-opr="+"></button>
+          <button class="btn-div" data-opr="/"></button>
+          <button class="btn-0" data-num="0"></button>
+          <button class="btn-point" data-opr="."></button>
+          <button class="btn-equal"></button>
+        </footer>
+      </div>
+    </section>
+  </main>
+  <script>
+    const calculator = document.querySelector('div.calcu')
+    const operation = document.querySelector('input.operation')
+    const result = document.querySelector('h4.result')
+    const btnNumbers = document.querySelectorAll('button[data-num]')
+    const btnOpers = document.querySelectorAll('button[data-opr]')
+    const btnClear = document.querySelector('button.btn-clear')
+    const btnDel = document.querySelector('button.btn-del')
+    const btnEqual = document.querySelector('button.btn-equal')
+    const btnMode = document.querySelector('button.btn-mode')
+
+   //Events 
+   btnClear.addEventListener('click', (e) => {
+            operation.value = ''
+            result.innerHTML = ''
+        })
+
+        btnNumbers.forEach(btn =>  {
+            btn.addEventListener('click', (e) => {
+                operation.value +=  btn.dataset.num
+        })
+    })
+    btnOpers.forEach(btn =>  {
+        btn.addEventListener('click', (e) => {
+            operation.value +=  btn.dataset.opr
+        })
+    })
+    btnDel.addEventListener('click', (e) => {
+        operation.value = operation.value.slice(0, -1)
+      })
+      
+      btnEqual.addEventListener('click', (e) => {
+        result.textContent = eval(operation.value)
+    })
+    btnMode.addEventListener('click', (e) => {
+        calculator.classList.toggle('dark')
+    })
+</script>
+
+</body>
+
+</html>

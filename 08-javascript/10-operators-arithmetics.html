@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08 - Javascript</title>
+    <link rel="shortout icon" href="favicon.ico" type="imagenes/x-icon"> 
+    <link rel="stylesheet" href="../css/styles.css">
+  </head>
+  <body class="js">
+
+    <nav>
+        <a href="../index.html">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+          <path fill="#ffffff" d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"></path>
+        </svg>
+      </a>
+    </nav>
+    <main>
+      <header>
+        <h1>09-operators-logical.</h1>
+        <h2>Combine conditions using logical operators.</h2>
+      </header>
+      <section>
+       <!-- Css -->
+<style>
+    table.operators {
+        border-collapse: collapse;
+        font-size: 0.8rem;
+        margin: 40px auto;
+        width: 380px;
+    }
+    table thead th {
+        background-color: #f0db4f;
+        color: #000c;
+    }
+    table th,
+    table td {
+        background-color: #fffc;
+        border: 1px solid #333;
+        color: #333;
+        padding: 6px;
+    }
+    table thead input {
+        border: none;
+        border-radius: 20px;
+        outline: none;
+        font-family: Poppins;
+        padding: 8px;
+        width: 120px;
+    }
+    table tbody td:first-child {
+        font-size: 1rem;
+        text-align: center;
+    }
+    table tbody tr:nth-child(even) td {
+        background-color: #fff8;
+    }
+</style>
+<!-- Markup -->
+<section>
+    <table class="operators">
+        <thead>
+            <tr>
+                <th colspan="4">
+                    <input type="number" placeholder="Y Value">
+                </th>
+            </tr>
+            <tr>
+                <th>Operator</th>
+                <th>Example</th>
+                <th>Equal</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>=</td>
+                <td>x=y</td>
+                <td class="eq"></td>
+                <td class="rs"></td>
+            </tr>
+            <tr>
+                <td>+=</td>
+                <td>x+=y</td>
+                <td class="eq">x=x+y</td>
+                <td class="rs"></td>
+            </tr>
+            <tr>
+                <td>-=</td>
+                <td>x-=y</td>
+                <td class="eq">x=x-y</td>
+                <td class="rs"></td>
+            </tr>
+            <tr>
+                <td>*=</td>
+                <td>x*=y</td>
+                <td class="eq">x=x*y</td>
+                <td class="rs"></td>
+            </tr>
+            <tr>
+                <td>/=</td>
+                <td>x/=y</td>
+                <td class="eq">x=x/y</td>
+                <td class="rs"></td>
+            </tr>
+            <tr>
+                <td>%=</td>
+                <td>x%=y</td>
+                <td class="eq">x=x%y</td>
+                <td class="rs"></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+<!-- JS -->
+<script>
+    // results
+    const eqs   = document.querySelectorAll('td.eq')
+    const rss   = document.querySelectorAll('td.rs')
+    const input = document.querySelector('input')
+    // Events
+    input.oninput = () => {
+        if (input.value != '') {
+            if (input.value.length < 4) {
+                // =
+                eqs[0].innerText = 'x=' + input.value
+                rss[0].innerText = parseInt(input.value)
+                // +=
+                rss[1].innerText = 10 + parseInt(input.value)
+                // -=
+                rss[2].innerText = 10 - parseInt(input.value)
+                // *=
+                rss[3].innerText = 10 * parseInt(input.value)
+                // /=
+                rss[4].innerText = 10 / parseInt(input.value)
+                // %=
+                rss[5].innerText = 10 % parseInt(input.value)
+            } else {
+                input.value = input.value.slice(0,-1)
+            }
+        } else {
+            eqs[0].innerText = ''
+            for (let i = 0; i < rss.length; i++) {
+                rss[i].innerText = ''
+            }
+        }
+    }
+</script>
+      </section>
+    </main>
+  </body>
+  
+</html>
