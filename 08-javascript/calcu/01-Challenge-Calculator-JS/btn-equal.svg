@@ -1,5 +1,6 @@
-<svg width="80" height="113" viewBox="0 0 80 113" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect opacity="0.8" width="80" height="80" rx="20" fill="url(#paint0_linear_21_65)"/>
+<path d="M31.7969 37.4332V34.071H48.1733V37.4332H31.7969ZM31.7969 45.3082V41.946H48.1733V45.3082H31.7969Z" fill="white"/>
 <defs>
 <linearGradient id="paint0_linear_21_65" x1="40" y1="0" x2="40" y2="80" gradientUnits="userSpaceOnUse">
 <stop stop-color="#B13D3D"/>

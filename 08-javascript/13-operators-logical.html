@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../css/styles.css">
   <style>
     div.calcu {
-      background-color: #F0E4E4;
+      background-color:#F0E4E4;
       border-radius: 30px;
       height: 610px;
       margin: 0 auto;
@@ -18,7 +18,6 @@
 
       header {
         position: relative;
-        border: 2px solid;
         margin: 0 auto;
         width: 336px;
         height: 168px;
@@ -30,7 +29,7 @@
           position: absolute;
           top: 8px;
           height: 36px;
-          width: 100px;
+          width: 100%;
           transition: transform 0.2s ease-in;
 
           &:hover {
@@ -73,7 +72,7 @@
                 button {
                     border: none;
                     cursor: pointer;
-                    opacity: 0.8;
+                    opacity: 0.9;
                     height: 80px;
                     border-radius: 15px;
                     background-color: #989393;
@@ -152,10 +151,14 @@
             }
             /*dark mode*/
             &.dark {
-                background-color: #000;
+                background-color: #7D2B2B;
                 header{
                     input.operation{
                         color: #fff;
+                    }
+                    .btn-mode{
+                      background: url(calcu/01-Challenge-Calculator-JS/dark-mode.svg)no-repeat center center;
+                      width: 100%;
                     }
                     h4.result{
                         color: #fff;
@@ -163,7 +166,7 @@
                 }
                 footer{
                     button{
-                        opacity: 0.5;
+                        opacity: 0.8;
                         &:hover {
                             opacity: 1;
                             transform: scale(1.1);
@@ -233,7 +236,7 @@
     const btnClear = document.querySelector('button.btn-clear')
     const btnDel = document.querySelector('button.btn-del')
     const btnEqual = document.querySelector('button.btn-equal')
-    const btnMode = document.querySelector('button.btn- mode')
+    const btnMode = document.querySelector('button.btn-mode')
 
    //Events 
    btnClear.addEventListener('click', (e) => {
