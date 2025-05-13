@@ -237,6 +237,18 @@
     const btnDel = document.querySelector('button.btn-del')
     const btnEqual = document.querySelector('button.btn-equal')
     const btnMode = document.querySelector('button.btn-mode')
+    //dark
+      const darkMode = window.matchMedia('(prefers-color-scheme: dark)')
+        darkMode.addListener(darkModeChange)
+
+        function darkModeChange(dm) {
+            if (dm.matches) {
+                calculator.classList.add('dark')
+            } else {
+                calculator.classList.remove('dark')
+            }
+        }
+        darkModeChange(darkMode)
 
    //Events 
    btnClear.addEventListener('click', (e) => {
