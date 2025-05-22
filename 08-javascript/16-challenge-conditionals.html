@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>16-challenge-conditionals</title>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="../css/styles.css">
@@ -43,24 +44,33 @@
       padding: 2rem;
       width: 300px;
       margin: 2rem auto;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
       text-align: center;
       position: relative;
       display: none;
     }
 
     .weather-day {
-      background: url("calcu/01-Challenge-Calculator-JS/nubes.svg") no-repeat center, #a8eafc;
-      color: #222;
+      background: url("calcu/01-Challenge-Calculator-JS/nubes.svg") no-repeat center, #82D3D8;
+      color: #1d1d1d;
     }
 
     .weather-night {
-      color: #ffffff;
       background: url("calcu/01-Challenge-Calculator-JS/nubes-dark.svg") no-repeat center, #2D3E7E;
+      color: white !important;
     }
 
-    .weather-card h2, .weather-card h3 {
+    .weather-night h2,
+    .weather-night h3,
+    .weather-night .temp,
+    .weather-night .weather-info div {
+      color: white !important;
+    }
+
+    .weather-card h2,
+    .weather-card h3 {
       margin: 0.2rem 0;
+      color: black;
     }
 
     .temp {
@@ -68,14 +78,36 @@
       font-weight: bold;
     }
 
-    .condition-icon {
-      width: 60px;
+    .weather-info {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      font-weight: 500;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
-      margin-top: 1rem;
+    .weather-info div {
+      width: 33%;
+      text-align: center;
+    }
+
+    .weather-info div:first-child {
+      text-align: left;
+    }
+
+    .weather-info div:last-child {
+      text-align: right;
+    }
+
+    .icon-container {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    .icon-container img {
+      width: 32px;
+      height: 32px;
     }
 
     .search {
@@ -85,12 +117,15 @@
     }
   </style>
 </head>
+
 <body class="js">
 
   <nav>
     <a href="../index.html">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="30">
-        <path fill="#ffffff" d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"></path>
+        <path fill="#ffffff"
+          d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z">
+        </path>
       </svg>
     </a>
   </nav>
@@ -107,24 +142,23 @@
           <input type="text" class="query" placeholder="Search for a city" />
           <button class="btn-search">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20">
-              <path fill="#000000" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+              <path fill="#000000"
+                d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
             </svg>
           </button>
         </div>
 
         <!-- Weather Card -->
         <div id="weatherCard" class="weather-card">
-          <!-- Ícono de día/noche arriba a la derecha -->
-          <img id="dayNightIcon" src="" alt="icono día/noche" style="position: absolute; top: 1rem; right: 1rem; width: 30px;">
+          <div class="icon-container" id="iconContainer"></div>
           <h2 id="city">Ciudad</h2>
           <h3 id="date">Fecha</h3>
           <div class="temp" id="temp">--°</div>
-          <img id="icon" class="condition-icon" src="" alt="icon"/>
           <h3 id="condition">Condición</h3>
-          <ul>
-            <li id="humidity">Humedad: --%</li>
-            <li id="cloud">Nubosidad: --%</li>
-          </ul>
+          <div class="weather-info">
+            <div id="humidity">Humedad: --%</div>
+            <div id="cloud">Nubosidad: --%</div>
+          </div>
         </div>
       </div>
     </section>
@@ -134,6 +168,7 @@
     const q = document.querySelector('.query');
     const btnSearch = document.querySelector('.btn-search');
     const weatherCard = document.getElementById('weatherCard');
+    const iconContainer = document.getElementById('iconContainer');
 
     btnSearch.addEventListener('click', () => {
       if (q.value.length > 0) {
@@ -153,15 +188,12 @@
       weatherCard.classList.remove('weather-day', 'weather-night');
       weatherCard.classList.add(isDay ? 'weather-day' : 'weather-night');
 
-      // Actualiza el ícono de día/noche
-      const iconPath = isDay ? 'calcu/01-Challenge-Calculator-JS/sun.svg' : 'calcu/01-Challenge-Calculator-JS/luna.svg';
-      document.getElementById('dayNightIcon').src = iconPath;
+      // Icono de día/noche
+      iconContainer.innerHTML = `<img src="${isDay ? 'calcu/01-Challenge-calculator-js/sun.svg' : 'calcu/01-Challenge-calculator-js/luna.svg'}" alt="${isDay ? 'Día' : 'Noche'}">`;
 
       document.getElementById('city').textContent = `${data.location.name}, ${data.location.country}`;
       document.getElementById('date').textContent = data.current.last_updated;
       document.getElementById('temp').textContent = `${data.current.temp_c}°`;
-      document.getElementById('icon').src = data.current.condition.icon;
-      document.getElementById('icon').alt = data.current.condition.text;
       document.getElementById('condition').textContent = data.current.condition.text;
       document.getElementById('humidity').textContent = `Humedad: ${data.current.humidity}%`;
       document.getElementById('cloud').textContent = `Nubosidad: ${data.current.cloud}%`;
@@ -170,4 +202,5 @@
     };
   </script>
 </body>
+
 </html>
