@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18 - Pokedex</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+    <style>
+        select.pk-generation {
+            appearance: none;
+            padding: 0.4rem 0.8rem;
+            display: flex;
+            margin: 2rem auto;
+        }
+
+        ul.pokemons {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.4rem;
+
+            li {
+                border: 2px solid #fff9;
+                border-radius: 0.4rem;
+                text-align: center;
+
+                h4,
+                h5 {
+                    margin: 0;
+                    text-align: center;
+                    color: white;
+                }
+            }
+            &.hide{
+                display: none;
+            }
+
+        }
+
+        img.loader{
+            display: flex;
+            margin: 8rem auto;
+            width: 160px;
+            &.hide{
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="js">
+    <nav>
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path fill="#ffffff"
+                    d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z">
+                </path>
+            </svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>18 - Pokedex</h1>
+            <h2>Obtén y muestra datos de la API de Pokedex</h2>
+
+        </header>
+        <section>
+            <select class="pk-generation"></select>
+
+            <img class="loader" src="imagenes/loader-pika.gif" alt="">
+
+            <ul class="pokemons"></ul>
+        </section>
+    </main>
+    <script>
+
+        //Objects
+
+        const types = {
+            normal: "#a8a77a",
+            fire: "#ee8130",
+            water: "#6390f0",
+            electric: "#f7d02c",
+            grass: "#7ac74c",
+            ice: "#96d9d6",
+            fighting: "#c22e28",
+            poison: "#a33ea1",
+            ground: "#e2bf65",
+            flying: "#a98ff3",
+            psychic: "#f95587",
+            bug: "#a6b91a",
+            rock: "#b6a136",
+            ghost: "#735797",
+            dragon: "#6f35fc",
+            dark: "#705746",
+            steel: "#b7b7ce",
+            fairy: "#d685ad",
+            shadow: "#5a5a5a",
+            unknown: "#68a090",
+        }
+
+
+        const generations = {
+            range: [
+                { from: 1, to: 151 },
+                { from: 152, to: 251 },
+                { from: 252, to: 386 },
+                { from: 387, to: 493 },
+                { from: 494, to: 649 },
+                { from: 650, to: 721 },
+                { from: 722, to: 809 },
+                { from: 810, to: 890 },
+                { from: 891, to: 1025 }
+            ]
+        }
+
+        // select
+        const pkGeneration = document.querySelector('.pk-generation')
+        
+        pkGeneration.innerHTML = `<option value="">Select a generation...</option>`
+        generations['range'].forEach((element, index) => {
+            pkGeneration.innerHTML += `<option value="${index}">Generation ${++index}</option>`
+        });
+
+
+        //events
+        pkGeneration.addEventListener('change', function (e) {
+            if (this.value != "") {
+                loadPokemon(generations.range[this.value].from, generations.range[this.value].to)
+            }
+
+        })
+
+        //Elements 
+        const pokemons = document.querySelector('.pokemons')
+        const loader = document.querySelector('.loader')
+        const loadPokemon = async (start, end) => {
+            pokemons.classList.add('hide')
+            loader.classList.remove('hide')
+            pokemons.innerHTML = ""
+            setTimeout(()=>{
+                loader.classList.add('hide')
+                pokemons.classList.remove('hide')
+            },2000)
+            for (let pk = start; pk <= end; pk++) {
+                const url = `https://pokeapi.co/api/v2/pokemon/${pk}`
+                const response = await fetch(url)
+                const data = await response.json()
+
+                let typeColor = data.types[0].type.name
+                //console.log(data)
+
+                pokemons.innerHTML += `<li style="border-color: ${types[typeColor]}; background: linear-gradient(black, ${types[typeColor]})">
+                                            <h4>${data.id}</h4>
+                                            <h5>${data.name}</h5>
+                                            <img src="${data.sprites.front_default}">
+                                        </li>`
+            }
+
+        }
+        loadPokemon(1, 151)
+    </script>
+</body>
+
+</html>
