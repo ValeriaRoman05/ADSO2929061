@@ -9,20 +9,68 @@
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
     <style>
+        section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color:#DE611E;
+
+            div#home {
+                background: url(imagenes/fondohome.svg) center center no-repeat;
+                width: 405px;
+                height: 700px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: center;
+
+                &.hide {
+                    content: '';
+                    display: none;
+                }
+
+                a {
+                    height: 75px;
+                    align-self: center;
+                    margin-bottom: 30px;
+
+                }
+            }
+        }
+
+        .hide {
+            display: none;
+            content: '';
+        }
+
         select.pk-generation {
             appearance: none;
             padding: 0.4rem 0.8rem;
             display: flex;
             margin: 2rem auto;
         }
-
+        div#pokemons{
+            /* background: url(imagenes/pokedex/fondo.svg) center center no-repeat; */
+            background-color: #D97C34;
+            width: 405px;
+                height: 700px;
+                padding: 10px;
+            
+        }
         ul.pokemons {
             list-style: none;
             margin: 0;
             padding: 0;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            overflow-y: scroll;
+            overflow-x: hidden;
+            grid-template-columns: repeat(2, 1fr);
             gap: 0.4rem;
+            height: 550px;
+            &.hide{
+                display: none;
+                content: '';
+            }
 
             li {
                 border: 2px solid #fff9;
@@ -36,20 +84,34 @@
                     color: white;
                 }
             }
-            &.hide{
-                display: none;
-            }
+
 
         }
 
-        img.loader{
+        div.infoPK{
+            width: 450px;
+            background-color: #D97C34;
             display: flex;
-            margin: 8rem auto;
-            width: 160px;
+            flex-direction: column;
+
             &.hide{
+                content:'';
                 display: none;
             }
         }
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-self: center;
+            justify-self: center;
+            height: 100px;
+            width: auto;
+            &.hide{
+                content: '';
+                display:none;
+}
+}
     </style>
 </head>
 
@@ -70,16 +132,103 @@
 
         </header>
         <section>
-            <select class="pk-generation"></select>
+            <div id="home">
+                <a href="#pokemons" class="toPokemons"><img src="imagenes/button-enter.svg"
+                        alt="Entrar/Buscar"></a>
+            </div>
+            <div class="hide" id="pokemons"> 
+                <a href="#home" class="backhome"> <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25"
+                    viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                    <path fill="#fbff00"
+                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+                </svg></a>
+                <img class="" src="imagenes/pokemons.svg" alt="">
+                
+                <!-- <img src="images/pokedex/logo.svg" alt=""> -->
+                <select class="pk-generation">
+                    <option value="">Selecciona una generación...</option>
+                </select>
 
-            <img class="loader" src="imagenes/loader-pika.gif" alt="">
+                <img src="imagenes/loader-pika.gif" alt="cargando..." class="loader hide" width="100">
+                <ul class="pokemons hide">
 
-            <ul class="pokemons"></ul>
+
+                </ul>
+            </div>
+            <div class="hide" id="pkinfo">
+                <a href="#pokemons" class="backlist"><svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25"
+                        viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                        <path fill="#fbff00"
+                            d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+                    </svg></a>
+                <div class="infoPK">
+                </div>
+            </div>
+
+
         </section>
     </main>
     <script>
+        //Elementos
+        const home = document.querySelector('#home');
+        const toPK = document.querySelector('.toPokemons');
+        const listPokemons = document.querySelector('#pokemons')
+        const backHome = document.querySelector('.backhome')
+        const pokemons = document.querySelector('.pokemons');
+        const pkGeneration = document.querySelector('.pk-generation');
+        const pkInfo = document.querySelector('#pkinfo');
+        const backlist = document.querySelector('.backlist');
+        const infoPK = document.querySelector('.infoPK');
+        const toInfoPK = document.querySelectorAll('li.toInfoPK');
+        const loader = document.querySelector('.loader');
+
+
+
+
+
+
+        //Events
+
+        toPK.addEventListener('click', (e) => {
+            home.classList.add('hide')
+            listPokemons.classList.remove('hide')
+
+        });
+
+        backHome.addEventListener('click', (e) => {
+            home.classList.remove('hide')
+            listPokemons.classList.add('hide')
+        });
+
+        pokemons.addEventListener('click', (e) => {
+            const li = e.target.closest('li.toInfoPK');
+            if (li) {
+                const id = li.dataset.id;
+                showPokemonInfo(id);
+            }
+        });
+        backlist.addEventListener('click', (e) => {
+            e.preventDefault();
+            setTimeout(() => {
+                listPokemons.classList.remove('hide');
+                pkInfo.classList.add('hide');
+            }, 500);
+        });
 
         //Objects
+        const generations = {
+            range: [
+                { from: 1, to: 151 },
+                { from: 152, to: 251 },
+                { from: 252, to: 386 },
+                { from: 387, to: 493 },
+                { from: 494, to: 649 },
+                { from: 650, to: 721 },
+                { from: 722, to: 809 },
+                { from: 810, to: 890 },
+                { from: 891, to: 1025 }
+            ]
+        }
 
         const types = {
             normal: "#a8a77a",
@@ -105,65 +254,128 @@
         }
 
 
-        const generations = {
-            range: [
-                { from: 1, to: 151 },
-                { from: 152, to: 251 },
-                { from: 252, to: 386 },
-                { from: 387, to: 493 },
-                { from: 494, to: 649 },
-                { from: 650, to: 721 },
-                { from: 722, to: 809 },
-                { from: 810, to: 890 },
-                { from: 891, to: 1025 }
-            ]
-        }
-
-        // select
-        const pkGeneration = document.querySelector('.pk-generation')
-        
-        pkGeneration.innerHTML = `<option value="">Select a generation...</option>`
         generations['range'].forEach((element, index) => {
             pkGeneration.innerHTML += `<option value="${index}">Generation ${++index}</option>`
         });
-
-
-        //events
         pkGeneration.addEventListener('change', function (e) {
-            if (this.value != "") {
-                loadPokemon(generations.range[this.value].from, generations.range[this.value].to)
-            }
-
+            loadPokemon(generations.range[this.value].from, generations.range[this.value].to)
         })
 
-        //Elements 
-        const pokemons = document.querySelector('.pokemons')
-        const loader = document.querySelector('.loader')
-        const loadPokemon = async (start, end) => {
+        const loadPokemon = async (from, to) => {
             pokemons.classList.add('hide')
-            loader.classList.remove('hide')
-            pokemons.innerHTML = ""
-            setTimeout(()=>{
-                loader.classList.add('hide')
+            loader.classList.remove("hide")
+            pokemons.innerHTML = ''
+            setTimeout(() => {
+                 loader.classList.add("hide")
                 pokemons.classList.remove('hide')
-            },2000)
-            for (let pk = start; pk <= end; pk++) {
+            }, 4000)
+            for (let pk = from; pk <= to; pk++) {
                 const url = `https://pokeapi.co/api/v2/pokemon/${pk}`
                 const response = await fetch(url)
                 const data = await response.json()
-
                 let typeColor = data.types[0].type.name
-                //console.log(data)
+                const typeIcon = `<img src="https://raw.githubusercontent.com/duiker101/pokemon-type-svg-icons/master/icons/${data.types[0].type.name}.svg" width="20" />`;
+                pokemons.innerHTML += `<li class="toInfoPK" data-id="${data.id}"  style="border-color: ${types[typeColor]}; background: linear-gradient(black, ${types[typeColor]})">
+                                            <div class="col1"><h5>${data.name}</h5>
+                                              ${typeIcon}
+                                              <h4>#${data.id}</h4> </div>  
+                                            <div class="col2">
+                                              <img src="${data.sprites.front_default}">
+                                            </div>
+                                         </li>`
 
-                pokemons.innerHTML += `<li style="border-color: ${types[typeColor]}; background: linear-gradient(black, ${types[typeColor]})">
-                                            <h4>${data.id}</h4>
-                                            <h5>${data.name}</h5>
-                                            <img src="${data.sprites.front_default}">
-                                        </li>`
+
+
+
             }
-
         }
         loadPokemon(1, 151)
+        // Mostrar detalle del Pokémon
+        async function showPokemonInfo(id) {
+            listPokemons.classList.add('hide');
+            pkInfo.classList.remove('hide');
+            infoPK.innerHTML = `<p style="color: white;">Cargando...</p>`;
+
+            const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+            const data = await res.json();
+
+            const color = types[data.types[0].type.name];
+
+            const stats = data.stats.map(stat => ({
+                name: stat.stat.name,
+                value: stat.base_stat
+            }));
+
+            const typeIcon = ` <img src="https://raw.githubusercontent.com/duiker101/pokemon-type-svg-icons/master/icons/${data.types[0].type.name}.svg" width="40" />`;
+
+            infoPK.innerHTML = `
+  <div class="card-container">
+    <div class="card">          
+      <div class="face front"></div>  
+      <div class="face back">
+        <div style="
+             text-align:center;color:white;font-family:sans-serif;
+             padding:1rem;
+             border-radius:1rem;background:#D97C34;">
+          <h2 style="font-size:1.8rem;">${capitalize(data.name)}</h2>
+          <h3 style="color:black;">#${String(data.id).padStart(3, '0')}</h3>
+          ${typeIcon}
+          <div style="margin:1rem 0;">
+            <img src="${data.sprites.other['official-artwork'].front_default}" width="150">
+          </div>
+          <h4 style="margin-bottom:.5rem;">PK Stats</h4>
+          ${stats.map(renderStatBar).join('')}
+        </div>
+      </div>
+    </div>
+  </div>`;
+            requestAnimationFrame(() => {
+                document.querySelector('#pkinfo .card').classList.add('flipped');
+            });
+
+
+        }
+
+        function renderStatBar(stat) {
+            
+
+            const nameMap = {
+                hp: 'HP',
+                attack: 'Atk',
+                defense: 'Def',
+                'special-attack': 'SAtk',
+                'special-defense': 'SDef',
+                speed: 'Sp'
+            };
+
+            const percent = Math.min(100, (stat.value / 150) * 100).toFixed(0);
+
+            return `
+        <div style="margin-bottom: 0.4rem; text-align: left;">
+            <span style="color:white; background-color: transparent;">${nameMap[stat.name] || stat.name}</span>
+            <div style="background-color: #fff; height: 10px; border-radius: 4px; overflow: hidden;">
+                <div style="width: ${percent}%; height: 100%; background-color: #AC5E21;"></div>
+            </div>
+        </div>
+        `;
+        }
+
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        pokemons.addEventListener('click', (e) => {
+            const li = e.target.closest('li.toInfoPK');
+            if (li) {
+                const id = li.dataset.id;
+                showPokemonInfo(id);
+            }
+        });
+
+
+
+
+
     </script>
 </body>
 
