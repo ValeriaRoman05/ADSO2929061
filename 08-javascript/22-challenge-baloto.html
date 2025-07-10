@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>22 - Baloto</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+        section {
+            background-size: cover;
+            border-radius: 45px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            &.fondo {
+            background: url('imagenes/fondo.svg')no-repeat center center;
+
+            }
+        }
+
+
+        main {
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: white;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-baloto {
+            width: 270px;
+            margin-top: 10px;
+        }
+
+        .balls-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            justify-items: center;
+            margin-top: 20px;
+        }
+
+        .bottom-balls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .ball {
+            width: 80px;
+            height: 80px;
+            background-size: cover;
+            background-position: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ball-yellow {
+            background-image: url('imagenes/bola roja.svg')
+        }
+
+        .ball-red {
+            background-image: url('imagenes/bola azul.svg');
+            color: #FFF200;
+        }
+
+        .super-ball {
+            margin-top: 10px;
+        }
+
+        #girar {
+            background: transparent;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        #girar img {
+            width: 150px;
+        }
+
+        #girar:disabled img {
+            filter: grayscale(100%);
+            cursor: not-allowed;
+        }
+
+        nav svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        nav {
+            padding: 1rem;
+        }
+
+        .orbit-wrapper {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin-bottom: 40px;
+        }
+
+        .super-ball {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        .orbit {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: orbit 1s linear infinite;
+            animation-play-state: paused;
+            transform-origin: center center;
+        }
+
+        .ball.orbiting {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+        }
+
+        .ball-red {
+            z-index: 2;
+        }
+
+        .orbit .ball {
+            animation: rotate 2s linear infinite;
+            animation-play-state: paused;
+        }
+
+        @keyframes orbit {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(-360deg);
+            }
+        }
+
+        #figma-btn {
+            background: #887f7f;
+            color: #000000;
+            border: 2px solid #e4e001;
+            padding: 15px 15px;
+            border-radius: 18px;
+            /* Redondeado solo abajo */
+            cursor: pointer;
+            font-weight: bold;
+            width: 30%;
+            /* Mismo ancho que el section */
+            text-align: center;
+            transition: all 0.3s;
+            margin-top: 1px;
+            /* Para "pegarlo" visualmente */
+        }
+    </style>
+
+    <head>
+        <!-- Diseño en Figma: https://www.figma.com/design/VP8K7dBXkjolRgsZ3x5v9o/17-Podedex-API?node-id=0-1&m=dev&t=xYy50e5KNCyPKwkT-1 -->
+        <meta charset="UTF-8">
+    </head>
+</head>
+
+<body class="js">
+    <nav>
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path fill="#ffffff"
+                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
+        </a>
+    </nav>
+
+    <main>
+        <header>
+            <h1>22 - Challenge Baloto</h1>
+            <p>Simulador de sorteo aleatorio</p>
+        </header>
+
+        <section class="fondo">
+            <img src="imagenes/logo.svg" alt="Logo Baloto" class="logo-baloto">
+
+            <div class="orbit-wrapper">
+                <div class="orbit" id="orbit">
+                    <div class="ball ball-yellow orbiting" id="ball1">--</div>
+                    <div class="ball ball-yellow orbiting" id="ball2">--</div>
+                    <div class="ball ball-yellow orbiting" id="ball3">--</div>
+                    <div class="ball ball-yellow orbiting" id="ball4">--</div>
+                    <div class="ball ball-yellow orbiting" id="ball5">--</div>
+                </div>
+                <div class="ball ball-red super-ball" id="superball">--</div>
+            </div>
+
+
+            <button id="girar">
+                <img src="imagenes/enter.svg" alt="Botón Girar">
+            </button>
+
+        </section>
+        <section id="figma-balloto" style="margin-top: 2rem; display: flex; justify-content: center;">
+            <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/design/aILTaefpfqYgCWR3WPubn1/Untitled?node-id=0-1&embed-host=share" allowfullscreen></iframe>
+        </section>
+    </main>
+
+    <script>
+        const btnGirar = document.getElementById('girar');
+        const balls = [
+            document.getElementById('ball1'),
+            document.getElementById('ball2'),
+            document.getElementById('ball3'),
+            document.getElementById('ball4'),
+            document.getElementById('ball5')
+        ];
+        const superBall = document.getElementById('superball');
+        const orbit = document.getElementById('orbit');
+
+        let isSpinning = false;
+
+        function shuffle(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function startAnimation() {
+            orbit.style.animationPlayState = 'running';
+            balls.forEach(ball => {
+                ball.style.animationPlayState = 'running';
+            });
+        }
+
+        function stopAnimation() {
+            orbit.style.animationPlayState = 'paused';
+            balls.forEach(ball => {
+                ball.style.animationPlayState = 'paused';
+            });
+        }
+
+        btnGirar.addEventListener('click', () => {
+            if (!isSpinning) {
+                // Inicia el giro
+                startAnimation();
+                isSpinning = true;
+
+                // Detiene luego de 4 segundos y cambia los números
+                setTimeout(() => {
+                    stopAnimation();
+                    const amarillos = shuffle(Array.from({ length: 43 }, (_, i) => i + 1)).slice(0, 5);
+                    const rojo = shuffle(Array.from({ length: 16 }, (_, i) => i + 1))[0];
+
+                    balls.forEach((ball, i) => {
+                        ball.textContent = amarillos[i];
+                    });
+
+                    superBall.textContent = rojo;
+                    isSpinning = false;
+                }, 1000);
+            }
+        });
+        function positionBallsInCircle() {
+            const orbitCenter = 150; // radio de contenedor (orbit-wrapper debe tener 300x300)
+            const radius = 110; // radio del círculo donde giran las bolas
+            const angleStep = (2 * Math.PI) / balls.length;
+
+            balls.forEach((ball, i) => {
+                const angle = i * angleStep;
+                const x = orbitCenter + radius * Math.cos(angle) - 40; // -40 para centrar (bola es de 80px)
+                const y = orbitCenter + radius * Math.sin(angle) - 40;
+
+                ball.style.position = "absolute";
+                ball.style.left = `${x}px`;
+                ball.style.top = `${y}px`;
+            });
+        }
+
+        positionBallsInCircle();
+    </script>
+
+</body>
+
+</html>
