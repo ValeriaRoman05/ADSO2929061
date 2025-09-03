@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>27 - Events Time</title>
+    <link rel="stylesheet" href="../css/Styles.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <style>
+        section h4.clock {
+            font-size: 2.8rem;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        section {
+            input {
+                margin-top: 1rem;
+                border: 2px solid #b7a63c;
+                border-radius: 5px;
+                padding: 0.5rem;
+                width: 260px;
+            }
+
+            button {
+                background-color: #b7a63c;
+                border-radius: 5px;
+                border: none;
+                color: #fff;
+                cursor: pointer;
+                padding: 0.6rem;
+                width: 114px;
+            }
+
+            h4.refresh {
+                font-size: 1.6rem;
+                text-align: center;
+            }
+
+            figure.sky {
+                background: url(imagenes/clouds-sky.jpg) no-repeat center /cover;
+                border-radius: 4px;
+                border: 4px solid #b7a63c;
+                height: 400px;
+                overflow: hidden;
+                position: relative;
+                margin: 0 auto;
+                width: 380px;
+
+                img.goku {
+                    position: absolute;
+                    top: 140px;
+                    left: 140px;
+                    transition: left 0.2s ease-in;
+                }
+            }
+        }
+    </style>
+</head>
+
+<body class="js">
+    <nav>
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path fill="#ffffff"
+                    d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z">
+                </path>
+            </svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>27 - Events Time</h1>
+            <h2>Maneja eventos y intervalos basados en tiempo</h2>
+
+        </header>
+        <section>
+            <h3>SetInterval: Digital Clock</h3>
+            <h4 class="clock"></h4>
+            <h3>SetTimeout: Refresh Page</h3>
+            <input class="timeToRefresh" type="number" placeholder="Number of second">
+            <button class="btnSetTime">Set Time</button>
+            <h4 class="refresh"></h4>
+            <h3>Move Element: </h3>
+            <small><strong>Press Left & Right Keys</strong></small>
+            <figure class="sky">
+                <img src="imagenes/goku.png" class="goku">
+            </figure>
+        </section>
+    </main>
+    <script>
+        //Elements
+        const clock= document.querySelector('.clock')
+        const timeRefresh= document.querySelector('.timeToRefresh')
+        const btnSetTime= document.querySelector('.btnSetTime')
+        const refresh= document.querySelector('.refresh')
+        const goku= document.querySelector('.goku')
+
+        //set interval
+        clock.textContent=`${new Date().toLocaleTimeString()}`
+        setInterval(() =>{
+            let currentTime=new Date().toLocaleTimeString()
+            clock.textContent=currentTime
+        },1000)
+
+
+        //Set Timeout
+        btnSetTime.addEventListener('click', ()=>{
+            if(!timeRefresh.value.length>0){
+                alert('Por Favor inserte numero de segundos')
+            }else{
+                let count = 1
+                let time= parseInt(timeRefresh.value)
+                refresh.textContent=`${time} segundos`
+                btnSetTime.style.pointerEvents = 'none'
+                btnSetTime.style.opacity = '0.4'
+
+                const st=setInterval(()=>{
+                    refresh.textContent =`${time-count} segundos`
+                    count++
+                },1000)
+
+                setTimeout(()=>{
+                    //window.location.replace('27-events-time.html')
+                    window.location.reload()
+                },(time * 1000))
+            }
+        })
+
+        //Event KeyUp
+        let posX=140
+        let posY=140
+
+        window.addEventListener('keyup', event => {
+            //console.log(event.keyCode)
+            // left -> 37 | Top -> 38 | right -> 39 | bottom -> 40
+            //console.log(event.code)
+            if(event.code == 'ArrowLeft'){
+                if(posX>-60){
+                    posX -=40
+                    goku.style.transform =`rotateY(0deg)`
+                    goku.style.left = `${posX}px`
+                }else{
+                    posX = 340
+                    goku.style.display ='none'
+                    setTimeout(() => {
+                        goku.style.display = 'block'
+                    }, 200)
+                    goku.style.left = `${posX}px`
+                }
+            }
+            if(event.code == 'ArrowRight'){
+                if(posX<340){
+                    posX +=40
+                    goku.style.transform =`rotateY(180deg)`
+                    goku.style.left = `${posX}px`
+                }else{
+                    posX = -60
+                    goku.style.display ='none'
+                    setTimeout(() => {
+                        goku.style.display = 'block'
+                    }, 200)
+                    goku.style.left = `${posX}px`
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
