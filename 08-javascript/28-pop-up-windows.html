@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>28 - Challenge</title>
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/styles.css"> 
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
     <style>
         body.js .game-container {
             position: relative;
@@ -13,7 +13,8 @@
             height: 95vh;
             max-width: 500px;
             max-height: 700px;
-            background: url(imagenes/supermercado.jpg);
+            /* Ruta corregida para la imagen de fondo */
+            background: url(./imagenes/supermercado.jpg);
             background-size: cover;
             background-position: center;
             border: 2px solid #333;
@@ -66,7 +67,6 @@
             color: red;
         }
 
-        /* Estilos para las pantallas de inicio y fin de juego */
         .overlay {
             position: absolute;
             top: 0;
@@ -140,9 +140,6 @@
                 </div>
                 <span class="basket">🧺</span>
             </div>
-            <div class="figma">
-                <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/design/aILTaefpfqYgCWR3WPubn1/Untitled?node-id=0-1&embed-host=share" allowfullscreen></iframe>
-            </div>
         </section>
     </main>
     <script>
@@ -207,7 +204,7 @@
                 if (!gameActive) return;
                 const gameRect = gameContainer.getBoundingClientRect();
                 const basketWidth = basket.offsetWidth;
-                let newX = e.clientX - gameRect.left - (basketWidth / 2); // Corregido
+                let newX = e.clientX - gameRect.left - (basketWidth / 2);
                 newX = Math.max(0, Math.min(newX, gameRect.width - basketWidth));
                 basket.style.left = `${newX}px`;
             });
