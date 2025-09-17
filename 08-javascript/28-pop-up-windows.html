@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>28 - Challenge</title>
+    <link rel="stylesheet" href="../css/Styles.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <style>
+        body.js .game-container {
+            position: relative;
+            width: 95vw;
+            height: 95vh;
+            max-width: 500px;
+            max-height: 700px;
+            background: url(imagenes/supermercado.jpg);
+            background-size: cover;
+            background-position: center;
+            border: 2px solid #333;
+            overflow: hidden;
+            margin: 20px auto;
+            touch-action: none;
+        }
+
+        body.js .basket {
+            position: absolute;
+            bottom: 2%;
+            width: 15%;
+            height: 10%;
+            left: 50%;
+            font-size: 10vmin;
+            text-align: center;
+        }
+
+        body.js .food {
+            position: absolute;
+            top: 0;
+            width: 8%;
+            height: 8%;
+            transition: top linear;
+            font-size: 8vmin;
+            text-align: center;
+        }
+
+        body.js .score {
+            font-family: sans-serif;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin: 10px;
+        }
+
+        body.js .lives-container {
+            font-family: sans-serif;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        body.js .lives-container span {
+            margin-left: 5px;
+            font-size: 1.2em;
+            color: red;
+        }
+
+        /* Estilos para las pantallas de inicio y fin de juego */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-family: sans-serif;
+            z-index: 10;
+        }
+
+        .overlay h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .overlay p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .overlay button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="js">
+    <nav>
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path fill="#ffffff"
+                    d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z">
+                </path>
+            </svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>28 - Challenge</h1>
+            <h2>Crea desafíos interactivos basados en tiempo</h2>
+        </header>
+        <section>
+            <div class="game-container" tabindex="0">
+                <div id="start-screen" class="overlay">
+                    <h2>¡Bienvenido al juego!</h2>
+                    <p>Atrapa las frutas y verduras, ¡pero evita los objetos asquerosos! 🤮</p>
+                    <button id="start-button">Iniciar Juego</button>
+                </div>
+
+                <div id="end-screen" class="overlay" style="display: none;">
+                    <h2>Fin del Juego</h2>
+                    <p>Tu puntuación final es: <span id="final-score">0</span></p>
+                    <button id="restart-button">Jugar de Nuevo</button>
+                </div>
+
+                <p class="score">Puntos: <span id="score">0</span></p>
+                <div class="lives-container">
+                    Vidas: <span class="heart" id="heart1">❤️</span><span class="heart" id="heart2">❤️</span><span class="heart" id="heart3">❤️</span>
+                </div>
+                <span class="basket">🧺</span>
+            </div>
+            <div class="figma">
+                <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/design/aILTaefpfqYgCWR3WPubn1/Untitled?node-id=0-1&embed-host=share" allowfullscreen></iframe>
+            </div>
+        </section>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const gameContainer = document.querySelector('.game-container');
+            const basket = document.querySelector('.basket');
+            const scoreSpan = document.getElementById('score');
+            const hearts = document.querySelectorAll('.heart');
+            const startScreen = document.getElementById('start-screen');
+            const startButton = document.getElementById('start-button');
+            const endScreen = document.getElementById('end-screen');
+            const finalScoreSpan = document.getElementById('final-score');
+            const restartButton = document.getElementById('restart-button');
+
+            let score = 0;
+            let lives = 3;
+            let foodInterval;
+            let gameActive = false;
+            let baseSpeed = 2.5;
+            let foodCreationInterval = 1500;
+            let difficultyLevel = 0;
+
+            const goodFoods = ['🍎', '🥦', '🥕', '🍇', '🍓', '🍌', ];
+            const badFoods = ['🤢', '💀', '💩', '💊', '🕷️', '🪰', '🪠'];
+
+            function startGame() {
+                gameContainer.style.cursor = 'none';
+                clearInterval(foodInterval);
+                gameActive = true;
+                score = 0;
+                lives = 3;
+                baseSpeed = 2.5;
+                foodCreationInterval = 1500;
+                difficultyLevel = 0;
+                scoreSpan.textContent = score;
+                updateLivesDisplay();
+                startScreen.style.display = 'none';
+                endScreen.style.display = 'none';
+                document.querySelectorAll('.food').forEach(food => food.remove());
+                foodInterval = setInterval(createFood, foodCreationInterval);
+            }
+
+            function endGame() {
+                gameActive = false;
+                gameContainer.style.cursor = 'default';
+                clearInterval(foodInterval);
+                finalScoreSpan.textContent = score;
+                endScreen.style.display = 'flex';
+                document.querySelectorAll('.food').forEach(food => food.remove());
+            }
+
+            startButton.addEventListener('click', startGame);
+            restartButton.addEventListener('click', startGame);
+
+            document.addEventListener('keydown', (e) => {
+                if (!gameActive && (e.key === 'Enter' || e.key === ' ')) {
+                    startGame();
+                }
+            });
+
+            gameContainer.addEventListener('mousemove', (e) => {
+                if (!gameActive) return;
+                const gameRect = gameContainer.getBoundingClientRect();
+                const basketWidth = basket.offsetWidth;
+                let newX = e.clientX - gameRect.left - (basketWidth / 2); // Corregido
+                newX = Math.max(0, Math.min(newX, gameRect.width - basketWidth));
+                basket.style.left = `${newX}px`;
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (!gameActive) return;
+                const step = 20;
+                const currentLeft = parseFloat(basket.style.left) || 0;
+                const gameWidth = gameContainer.offsetWidth;
+                const basketWidth = basket.offsetWidth;
+                let newLeft = currentLeft;
+                if (e.key === 'ArrowLeft' || e.key === 'a') {
+                    newLeft = Math.max(0, currentLeft - step);
+                } else if (e.key === 'ArrowRight' || e.key === 'd') {
+                    newLeft = Math.min(gameWidth - basketWidth, currentLeft + step);
+                }
+                basket.style.left = `${newLeft}px`;
+            });
+
+            function updateLivesDisplay() {
+                hearts.forEach((heart, index) => {
+                    if (index < lives) {
+                        heart.style.visibility = 'visible';
+                    } else {
+                        heart.style.visibility = 'hidden';
+                    }
+                });
+            }
+
+            function updateDifficulty() {
+                const newDifficultyLevel = Math.floor(score / 50);
+                if (newDifficultyLevel > difficultyLevel) {
+                    difficultyLevel = newDifficultyLevel;
+                    
+                    baseSpeed += 0.5;
+                    if (foodCreationInterval > 300) {
+                        foodCreationInterval -= 100;
+                        clearInterval(foodInterval);
+                        foodInterval = setInterval(createFood, foodCreationInterval);
+                    }
+                }
+            }
+
+            function createFood() {
+                const isGoodFood = Math.random() > 0.5;
+                const food = document.createElement('span');
+                const foodEmoji = isGoodFood
+                    ? goodFoods[Math.floor(Math.random() * goodFoods.length)]
+                    : badFoods[Math.floor(Math.random() * badFoods.length)];
+                food.textContent = foodEmoji;
+                food.classList.add('food');
+                food.dataset.type = isGoodFood ? 'good' : 'bad';
+                const gameWidth = gameContainer.offsetWidth;
+                const foodWidth = food.offsetWidth;
+                food.style.left = `${Math.random() * (gameWidth - foodWidth)}px`;
+                gameContainer.appendChild(food);
+
+                let foodTop = 0;
+                const speed = baseSpeed;
+                const interval = setInterval(() => {
+                    foodTop += speed;
+                    food.style.top = `${foodTop}px`;
+
+                    if (foodTop + food.offsetHeight >= basket.offsetTop) {
+                        const basketRect = basket.getBoundingClientRect();
+                        const foodRect = food.getBoundingClientRect();
+                        if (foodRect.left < basketRect.right && foodRect.right > basketRect.left) {
+                            if (food.dataset.type === 'good') {
+                                score += 10;
+                                scoreSpan.textContent = score;
+                                updateDifficulty();
+                            } else {
+                                lives -= 1;
+                                updateLivesDisplay();
+                                if (lives <= 0) {
+                                    endGame();
+                                }
+                            }
+                            food.remove();
+                            clearInterval(interval);
+                        }
+                    }
+                    if (foodTop > gameContainer.offsetHeight) {
+                        if (food.dataset.type === 'good') {
+                            lives -= 1;
+                            updateLivesDisplay();
+                            if (lives <= 0) {
+                                endGame();
+                            }
+                        }
+                        food.remove();
+                        clearInterval(interval);
+                    }
+                }, 20);
+            }
+            updateLivesDisplay();
+        });
+    </script>
+</body>
+</html>
