@@ -1,0 +1,43 @@
+
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<style>
+    article.owl-carousel {
+        margin: 0px auto;
+        width: 100%;
+    }
+</style>
+
+<section>
+    <article class="owl-carousel owl-theme">
+        <img src="images/land1.jpg">
+        <img src="images/land2.jpg">
+        <img src="images/land3.jpg">
+        <img src="images/land4.jpg">
+        <img src="images/land5.jpg">
+    </article>
+</section>
+    
+<script src="js/jquery-3.7.1.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.owl-carousel').owlCarousel({
+            items: 3,
+            loop: true,
+            margin: 10,
+            nav: true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:2
+                },
+                1000:{
+                    items:3
+                }
+            }
+        });
+    });
+</script>

@@ -1,0 +1,37 @@
+<style>
+    button.btn {
+        display: flex;
+        cursor: pointer;
+        background-color: #fff9;
+        border: none;
+        margin: 1rem auto;
+        border-radius: 0.4rem;
+        padding: 0.6rem 1.2rem;
+        transition: transform 0.2s ease-in;
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+    figure.character {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        left: -60px;
+        gap: 1rem;
+        width: 180px;
+        figcaption {
+            background-color: #fff9;
+            border-radius: 0.4rem;
+            padding: 0.4rem 0.8rem;
+            color: #000;
+        }
+    }
+</style>
+<section class="section">
+    <button class="btn">Animate</button>
+    <figure class="character">
+        <img src="images/turbo-granny.png" alt="Turbo Granny" width="140px">
+        <figcaption>Turbo Granny</figcaption>
+    </figure>
+</section>

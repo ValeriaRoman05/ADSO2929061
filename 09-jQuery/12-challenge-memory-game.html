@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>00 - Template</title>
+    <link rel="stylesheet" href="../css/Styles.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+
+    <style>
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 15px;
+            background-image: url(images/fondo\ pantera.svg);
+            border-radius: 18px; 
+            width: 320px; 
+            max-width: 95%;
+            margin: 15px auto;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-between; 
+            width: 100%;
+            max-width: 300px; 
+            margin-bottom: 15px;
+        }
+
+        .stat-box {
+            background-color: #d56ec7;
+            color: #fff;
+            background-color: #d56ec7; 
+            color: #d56ec7; 
+            font-weight: bold;
+            padding: 8px 15px; 
+            border-radius: 10px; 
+            font-size: 0.9em; 
+            min-width: 110px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .stat-box p {
+            margin: 0;
+            padding-right: 5px; 
+            font-size: 1em;
+            color: #f6f6f7;
+        }
+        
+        #time-count, #movements-count {
+            font-size: 1.1em;
+            color: #fcfcfd;
+        }
+
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px; 
+            width: 300px; 
+            max-width: 100%;
+            margin-bottom: 20px;
+            perspective: 1000px;
+        }
+
+        .card {
+            width: 90px;
+            height: 90px;
+            border-radius: 10px; 
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            cursor: pointer;
+            background-size: cover;
+            background-position: center;
+            background-color: #ffc0cb;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+            background-image: url('');
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card.matched {
+            opacity: 0.7;
+            pointer-events: none;
+            box-shadow: 0 0 6px #7CFC00;
+        }
+
+
+        .card[data-pair='0'].flipped, .card[data-pair='0'].matched { 
+            background-image: url('images/pantera.svg'); 
+        }
+        
+        .card[data-pair='1'].flipped, .card[data-pair='1'].matched { 
+            background-image: url('images/huevo.svg'); 
+        }
+        
+        .card[data-pair='2'].flipped, .card[data-pair='2'].matched { 
+            background-image: url('images/oso.svg'); 
+        }
+        
+        .card[data-pair='3'].flipped, .card[data-pair='3'].matched { 
+            background-image: url('images/detective.svg'); 
+        }
+        
+        .card[data-pair='4'].flipped, .card[data-pair='4'].matched { 
+            background-image: url('images/pollo.svg'); 
+        }
+        
+        .card[data-pair='5'].flipped, .card[data-pair='5'].matched { 
+            background-image: url('images/hormiguero.svg'); 
+        }
+        
+        .card:not(.flipped):not(.matched) {
+            background-image: url('images/detras.svg');
+        }
+
+        #show-button {
+            background-color: #d56ec7;
+            color: #fff;
+            border: none;
+            padding: 8px 25px; 
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.2s, opacity 0.2s;
+            text-transform: uppercase;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        #show-button:hover:not(:disabled) {
+            background-color: #dfd4e4;
+        }
+
+        #show-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body class="jQuery">
+    <nav>
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>12- challenge memory</h1>
+            <h2>Juego de Memoria con jQuery</h2>
+
+        </header>
+        <section class="game-container">
+            <div class="stats-row">
+                <div class="stat-box" id="seconds-display">
+                    <p>seconds:</p>
+                    <span id="time-count">0</span>
+                </div>
+                <div class="stat-box" id="movements-display">
+                    <p>movements:</p>
+                    <span id="movements-count">0</span>
+                </div>
+            </div>
+
+            <div class="grid-container" id="memory-board">
+                </div>
+
+            <button id="show-button">show</button>
+
+        </section>
+     <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/design/aeTgEZoRQdLJtiTHU0joIc/Untitled?node-id=0-1&embed-host=share" allowfullscreen></iframe>
+            
+    </main>
+
+    <script>
+        $(document).ready(function() {
+            const cardPairs = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5];
+            let cards = [];
+
+            let flippedCards = [];
+            let lockBoard = false;
+            let movements = 0;
+            let matchesFound = 0;
+            let timerInterval;
+            let seconds = 0;
+
+            function shuffle(array) {
+                let currentIndex = array.length, randomIndex;
+                while (currentIndex != 0) {
+                    randomIndex = Math.floor(Math.random() * currentIndex);
+                    currentIndex--;
+                    [array[currentIndex], array[randomIndex]] = [
+                        array[randomIndex], array[currentIndex]];
+                }
+                return array;
+            }
+
+            function initializeGame() {
+                clearInterval(timerInterval);
+                seconds = 0;
+                movements = 0;
+                matchesFound = 0;
+                flippedCards = [];
+                lockBoard = false;
+
+                $('#time-count').text(seconds);
+                $('#movements-count').text(movements);
+                $('#memory-board').empty();
+                $('#show-button').prop('disabled', false).text('show');
+
+                cards = shuffle([...cardPairs]);
+
+                cards.forEach((pairId) => {
+                    const cardElement = $('<div>')
+                        .addClass('card')
+                        .attr('data-pair', pairId)
+                        .on('click', handleCardClick);
+
+                    $('#memory-board').append(cardElement);
+                });
+
+                setTimeout(startTimer, 500);
+            }
+
+            function startTimer() {
+                timerInterval = setInterval(() => {
+                    seconds++;
+                    $('#time-count').text(seconds);
+                }, 1000);
+            }
+
+            function stopTimer() {
+                clearInterval(timerInterval);
+            }
+
+            function handleCardClick() {
+                if (lockBoard || $(this).hasClass('flipped') || $(this).hasClass('matched')) {
+                    return;
+                }
+
+                $(this).addClass('flipped');
+                flippedCards.push($(this));
+
+                if (flippedCards.length === 1) {
+                    return;
+                }
+
+                lockBoard = true;
+                updateMovements();
+
+                const [card1, card2] = flippedCards;
+                const isMatch = card1.attr('data-pair') === card2.attr('data-pair');
+
+                if (isMatch) {
+                    matchFound(card1, card2);
+                } else {
+                    unflipCards(card1, card2);
+                }
+            }
+
+            function matchFound(card1, card2) {
+                card1.off('click').addClass('matched');
+                card2.off('click').addClass('matched');
+
+                matchesFound++;
+                flippedCards = [];
+                lockBoard = false;
+
+                if (matchesFound === cardPairs.length / 2) {
+                    stopTimer();
+                    setTimeout(() => {
+                        alert(`¡Felicidades! 🎉 Juego completado en ${seconds} segundos con ${movements} movimientos.`);
+                    }, 500);
+                }
+            }
+
+            function unflipCards(card1, card2) {
+                setTimeout(() => {
+                    card1.removeClass('flipped');
+                    card2.removeClass('flipped');
+                    flippedCards = [];
+                    lockBoard = false;
+                }, 1000);
+            }
+
+            function updateMovements() {
+                movements++;
+                $('#movements-count').text(movements);
+            }
+
+            $('#show-button').on('click', function() {
+                if (lockBoard) return;
+
+                lockBoard = true;
+                $(this).prop('disabled', true).text('LOOKING...');
+                stopTimer();
+
+                $('.card').not('.matched').addClass('flipped');
+
+                setTimeout(() => {
+                    $('.card').not('.matched').removeClass('flipped');
+                    lockBoard = false;
+                    $(this).prop('disabled', false).text('show');
+                    startTimer();
+                }, 3000);
+            });
+
+            initializeGame();
+        });
+    </script>
+</body>
+
+</html>
