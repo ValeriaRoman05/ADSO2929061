@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03 - DML</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        main section {
+            color: #fff;
+        }
+
+        section {
+            textarea {
+                background-color: #15316b;
+                border: none;
+                border-radius: 0.4rem;
+                outline: none;
+                padding: 0.4rem;
+                color: #fff;
+                width: 100%;
+                min-height: 32px;
+                font-size: 0.8rem;
+                resize: none;
+                field-sizing: content;
+            }
+        }
+    </style>
+</head>
+
+<body class="sql">
+    <nav>
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path fill="#ffffff"
+                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
+        </a>
+
+    </nav>
+    <main>
+        <header>
+            <h1>03 - DML</h1>
+            <h2>Data Manipulations Leguajes</h2>
+
+        </header>
+        <section>
+            <h3>INSERT (Long way - massive)</h3>
+            <textarea>INSERT INTO gyms (id, name) VALUES
+(DEFAULT, 'Saffron'),
+(DEFAULT, 'Fucshia'),
+(DEFAULT, 'Tomato');</textarea>
+            <h3>INSERT (short-hand)</h3>
+            <textarea>INSERT INTO trainers VALUES (
+DEFAULT, "Ash Ketchum", 2, 1, DEFAULT);
+
+INSERT INTO trainers VALUES ( 
+DEFAULT, "Misty", 4, 2, DEFAULT);
+
+INSERT INTO trainers VALUES ( 
+DEFAULT, "Brok", 6, 2, DEFAULT);</textarea>
+            <h3>INSERT (short-hand)</h3>
+            <textarea>INSERT INTO pokemons VALUES ( DEFAULT, 'pikachu', 'Electric', 90, 80, 96, 79, 1, DEFAULT);
+INSERT INTO pokemons VALUES ( DEFAULT, 'charmander', 'Fire', 95, 78, 80, 82, 1, DEFAULT);
+INSERT INTO pokemons VALUES ( DEFAULT, 'bulbasaour', 'Grass', 80, 88, 70, 75, 1, DEFAULT);
+INSERT INTO pokemons VALUES ( DEFAULT, 'squirtle', 'Water', 70, 90, 75, 90, 1, DEFAULT);
+INSERT INTO pokemons VALUES ( DEFAULT, 'Snorlax', 'Normal', 180, 320, 50, 180, 1, DEFAULT);
+INSERT INTO pokemons VALUES ( DEFAULT, 'Vaporeon', 'Water', 186, 260, 90, 168, 1, DEFAULT);
+INSERT INTO pokemons VALUES ( DEFAULT, 'Lapras', 'Water', 111, 255, 100, 168, 1, DEFAULT);
+INSERT INTO pokemons VALUES ( DEFAULT, 'Blastoise', 'Water', 720, 158, 70, 222, 1, DEFAULT);
+INSERT INTO pokemons VALUES ( DEFAULT, 'Golem', 'Water', 500, 160, 80, 198, 1, DEFAULT);
+INSERT INTO pokemons VALUES ( DEFAULT, 'Dragonite', 'Dragon', 900, 250, 120, 182, 1, DEFAULT);
+INSERT INTO pokemons VALUES ( DEFAULT, 'Exeggutor', 'Grass', 596, 190, 90, 232, 1, DEFAULT);
+INSERT INTO pokemons VALUES ( DEFAULT, 'Omaster', 'Rock', 1500, 140, 112, 202, 1, DEFAULT);
+INSERT INTO pokemons VALUES ( DEFAULT, 'Muk', 'Poison', 1070, 210, 112, 180, 1, DEFAULT);
+INSERT INTO pokemons VALUES ( DEFAULT, 'Onix', 'Rock', 662, 70, 80, 90, 1, DEFAULT);
+INSERT INTO pokemons VALUES ( DEFAULT, 'Poliwag', 'Water', 815, 80, 70, 108, 1, DEFAULT);
+INSERT INTO pokemons VALUES ( DEFAULT, 'Mankey', 'Water', 563, 80, 70, 122, 2, DEFAULT);
+INSERT INTO pokemons VALUES ( DEFAULT, 'Magnemite', 'Electric', 750, 50, 40, 128, 2, DEFAULT);
+INSERT INTO pokemons VALUES ( DEFAULT, 'Pidgey', 'Normal', 818, 80, 95, 90, 2, DEFAULT);
+INSERT INTO pokemons VALUES ( DEFAULT, 'Gastly', 'Ghost', 750, 60, 60, 82, 2, DEFAULT);
+INSERT INTO pokemons VALUES ( DEFAULT, 'Rattata', 'Normal', 810, 60, 65, 22, 2, DEFAULT);</textarea>
+            <!--  -->
+            <h3>SELECT ALL pokemons</h3>
+            <textarea>SELECT * FROM pokemos;</textarea>
+            <!--  -->
+            <h3>SELECT especific COLUMNS</h3>
+            <textarea>SELECT name, type from pokemons;</textarea>
+            <!--  -->
+            <h3>SELECT COLUMNS DISTINCTS</h3>
+            <textarea>SELECT DISTINCT type from pokemons;</textarea>
+            <!--  -->
+            <h3>SELECT WITH CONDITION (WHERE)</h3>
+            <textarea>SELECT name, type from pokemons where type='Ghost';</textarea>
+            <!--  -->
+            <h3>SELECT WITH CONDITION (OR WHERE)</h3>
+            <textarea>SELECT name, type  from pokemons where type='Ghost' OR type='Electric';</textarea>
+            <!--  -->
+            <h3>SELECT WITH CONDITION (AND WHERE)</h3>
+            <textarea>SELECT name, type  from pokemons where type='water' AND strenght>500</textarea>
+            <!--  -->
+            <h3>SELECT WITH CONDITION (>)</h3>
+            <textarea>SELECT name, type  from pokemons where strenght>700</textarea>
+            <!--  -->
+            <h3>SELECT WITH CONDITION (<>)</h3>
+            <textarea>SELECT name, type  from pokemons where type <> 'water';</textarea>
+            <!--  -->
+            <h3>SELECT WITH CONDITION (BETWEEN)</h3>
+            <textarea>SELECT name, type, strenght  from pokemons where strenght BETWEEN 500 and 1000;</textarea>
+            <!--  -->
+            <h3>SELECT ORDER BY (ASC/DESC)</h3>
+            <textarea>SELECT name, type, strenght  from pokemons ORDER BY name asc;</textarea>
+            <!--  -->
+            <h3>SELECT LIMIT</h3>
+            <textarea>SELECT name, type, strenght  from pokemons ORDER BY name asc LIMIT 5;</textarea>
+            <!--  -->
+            <h3>SELECT LIMIT (with offset)</h3>
+            <textarea>SELECT name, type, strenght  from pokemons ORDER BY name asc LIMIT 5 OFFSET 4;</textarea>
+            <!--  -->
+            <h3>SELECT OFFSET</h3>
+            <textarea>SELECT * FROM pokemons OFFSET 2 LIMIT 3;</textarea>
+            <!--  -->
+            <h3>SELECT SEARCH (LIKE: Start with W)</h3>
+            <textarea>SELECT name, type FROM pokemons WHERE name LIKE 'W%';</textarea>
+            <!--  -->
+            <h3>SELECT SEARCH (LIKE: End with e)</h3>
+            <textarea>SELECT name, type FROM pokemons WHERE name LIKE '%e';</textarea>
+            <!--  -->
+            <h3>SELECT SEARCH (LIKE: Contains)</h3>
+            <textarea>SELECT name, type FROM pokemons WHERE name LIKE '%ik%';</textarea>
+            <!--  -->
+            <h3>SELECT SEARCH (NOT LIKE: Contains)</h3>
+            <textarea>SELECT name,type FROM pokemons WHERE name NOT LIKE '%on%';</textarea>
+            <!--  -->
+            <h3>SELECT SEARCH (LIKE: Complete)</h3>
+            <textarea>SELECT name FROM pokemons WHERE name LIKE '_as%';</textarea>
+            <!--  -->
+            <h3>SELECT SEARCH (IN)</h3>
+            <textarea>SELECT name, type, strenght FROM pokemons WHERE type IN ('water', 'Ghost');</textarea>
+            <!--  -->
+            <h3>SELECT CHALLENGES</h3>
+            <small>List pokemons type water average speed </small>
+            <textarea>SELECT AVG(speed) AS average_water_speed FROM pokemons WHERE type = 'Water';</textarea>
+            <!--  -->
+            <small>List all pokemons with total sum all skills </small>
+            <textarea>SELECT name, (strenght + stamina + speed + accuracy) AS total_skills FROM pokemons;</textarea>
+            <!--  -->
+            <small>Sum all skills by type</small>
+            <textarea>SELECT type, SUM(strenght) AS total_strength FROM pokemons GROUP BY type;</textarea>
+            <!--  -->
+            <small>Count all pokemons type water</small>
+            <textarea>SELECT type, COUNT(id) AS water_pokemon_count FROM pokemons WHERE type = 'Water' GROUP BY type;</textarea>
+            <!--  -->
+            <h3>SELECT (ALIAS: Two Tables)</h3>
+            <small>List all trainers with their pokemons</small>
+            <textarea>SELECT T.name AS trainer_name, P.name AS pokemon_name FROM trainers T, pokemons P WHERE T.id = P.trainer_id;</textarea>
+            <!--  -->
+            <h3>SELECT (ALIAS: Two Tables with ORDER BY)</h3>
+            <small>List all trainers with their pokemons ordered desc</small>
+            <textarea>SELECT T.name AS trainer_name, P.name AS pokemon_name FROM trainers T, pokemons P Where T.id = P.trainer_id ORDER BY T.name desc,P.name DESC;</textarea>
+            <!--  -->
+            <h3>SELECT (ALIAS: Two Tables with AND OR & ORDER BY)</h3>
+            <small>List all trainers with their pokemons type water or fire</small>
+            <textarea>SELECT T.name AS trainer_name, P.name AS pokemon_name, P.type FROM trainers T, pokemons P WHERE T.id = P.trainer_id AND (P.type = 'Water' OR P.type = 'Fire');</textarea>
+            <!--  -->
+            <h3>SELECT (ALIAS: Two Tables - COUNT)</h3>
+            <small>List name trainer with number of pokemons</small>
+            <textarea>SELECT T.name AS trainer_name, COUNT(P.id) AS pokemon_count FROM trainers T, pokemons P WHERE T.id = P.trainer_id GROUP BY T.name;</textarea>
+            <!--  -->
+            <h3>SELECT (ALIAS: Three Tables)</h3>
+            <small>List all trainers with their pokemons & gyms</small>
+            <textarea>SELECT G.name AS gym_name, T.name AS trainer_name, P.name AS pokemon_name FROM gyms G, trainers T, pokemons P WHERE G.id = T.gym_id AND T.id = P.trainer_id;</textarea>
+            <!--  -->
+            <h3>SELECT (INNER JOIN: Three Tables)</h3>
+            <small>List all trainers with their pokemons & gyms</small>
+            <textarea>SELECT G.name AS gym_name, T.name AS trainer_name, P.name AS pokemon_name FROM gyms G INNER JOIN trainers T ON G.id = T.gym_id INNER JOIN pokemons P ON T.id = P.trainer_id;</textarea>
+            <!--  -->
+            <h3>SELECT (LEFT JOIN: Three Tables)</h3>
+            <small>List all trainers with their pokemons & gyms</small>
+            <textarea>SELECT G.name AS gym_name, T.name AS trainer_name, P.name AS pokemon_name FROM gyms G LEFT JOIN trainers T ON G.id = T.gym_id LEFT JOIN pokemons P ON T.id = P.trainer_id;</textarea>
+            <!--  -->
+            <h3>SELECT (RIGHT JOIN: Three Tables)</h3>
+            <small>List all trainers with their pokemons & gyms</small>
+            <textarea>SELECT G.name AS gym_name, T.name AS trainer_name, P.name AS pokemon_name FROM gyms G RIGHT JOIN trainers T ON G.id = T.gym_id RIGHT JOIN pokemons P ON T.id = P.trainer_id;</textarea>
+            <!--  -->
+            <h3>SELECT (UNION: Three Tables)</h3>
+            <small>List all trainers, pokemons & gyms in a just one column</small>
+            <textarea>SELECT name FROM gyms UNION SELECT name FROM trainers UNION SELECT name FROM pokemons;</textarea>
+            <!--  -->
+            <h3>CREATE VIEW</h3>
+            <small>Create a view that contains all trainers with their pokemons & gyms</small>
+            <textarea>CREATE VIEW Vista_Pokeadso AS SELECT G.name AS gym_name, T.name AS trainer_name, P.name AS pokemon_name FROM gyms G JOIN trainers T ON G.id = T.gym_id JOIN pokemons P ON T.id = P.trainer_id;</textarea>
+            <!--  -->
+            <h3>SHOW VIEW</h3>
+            <small>Show a view that contains all trainers with their pokemons & gyms</small>
+            <textarea>SELECT * FROM Vista_Pokeadso;</textarea>
+            <!--  -->
+            <h3>UPDATE</h3>
+            <small>One field</small>
+            <textarea>UPDATE pokemons SET strenght=5000 where type='Ghost';</textarea>
+            <small>Two o more fields</small>
+            <textarea>UPDATE pokemons SET strenght = 100, stamina = 100 WHERE type = 'Ghost';</textarea>
+            <!--  -->
+            <h3>DELETE</h3>
+            <small>One row</small>
+            <textarea>DELETE FROM pokemons WHERE id = 20;</textarea>
+            <small>All rows</small>
+            <textarea>DELETE FROM pokemons;</textarea>
+            <textarea>TRUNCATE TABLE pokemons;</textarea>
+            <!--  -->
+            <h3>TRANSACTION</h3>
+            <small>Begin a transaction, delete something, rollback</small>
+            <textarea>START TRANSACTION; DELETE FROM pokemons WHERE id = 19; SELECT * FROM pokemons;
+                ROLLBACK;
+                SELECT * FROM pokemons;</textarea>
+        </section>
+    </main>
+</body>
+
+</html>

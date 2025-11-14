@@ -1,0 +1,30 @@
+-- Show Version SQL
+>mysql --version
+
+-- Acces to MySQL
+>mysql -u root -p
+
+-- Show All Databases
+>>SHOW DATABASES;
+
+-- Create Database
+>>CREATE DATABASE database_name;
+
+-- Use Database
+>>USE database_name;
+
+-- Connect Database 
+>> connect database_name;
+
+-- Create Table
+>>CREATE TABLE gynms(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(32) NOT NULL ,
+	created_at TIMESTAMP
+);
+
+-- Create Copy
+>mysqldump -u root  database_name > path/name_file.sql
+
+-- Use Copy
+>mysql -u root -p database_name < path/name_file.sql
