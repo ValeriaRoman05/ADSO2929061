@@ -1,0 +1,305 @@
+/* F O N T S */
+/*--------------------*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/*----------------------*/
+/*---------------------------------*/
+/* R E S E T */
+/*---------------------------------*/
+
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/** {
+    margin: 0;
+    padding: 0;
+}*/
+
+ul[role='list'],
+ol[role='list'] {
+    list-style: none;
+}
+
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+}
+
+img,
+picture,
+svg,
+video,
+canvas {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    font-style: italic;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*input, button, textarea, select{
+    font: inherit; 
+}*/
+
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+        transition: none;
+    }
+}
+
+body,
+html {
+    height: 100%;
+    scroll-behavior: smooth;
+}
+
+/*--------------------*/
+
+/*--------------------*/
+/*V A R I A B L E S */
+/*--------------------*/
+
+:root {
+    --color-1: rgba(177, 161, 161, 0.6);
+    --color-2: #eee9;
+    --fonts-fm: Poppins, sans-serif;
+}
+
+/*--------------------*/
+/* G E N E R A L */
+/*--------------------*/
+body {
+    color: var(--color-1);
+    font-family: var(--fonts-fm);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-wrap: wrap;
+
+    nav:not(.nav) {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+
+        a:is(:link, :visited) {
+            border-radius: 10px;
+            background-color: #141313;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.4s ease-in;
+            height: 60px;
+            width: 60px;
+
+            svg {
+                opacity: 0.7;
+                width: 64px;
+            }
+
+            a:is(:hover)svg {
+                opacity: 1;
+            }
+
+            a:is(:hover) {
+                transform: scale(1.05);
+            }
+
+
+        }
+
+    }
+
+    main {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+
+            h1 {
+                font-size: 4.5rem;
+                font-weight: 200;
+            }
+
+            h2 {
+                font-size: 2rem;
+                font-weight: 500;
+                border-bottom: 4px solid;
+            }
+
+            h3 {
+                border-radius: 20px;
+                background-color: var(--color-1);
+                padding: 4px 12px;
+                color: var(--color-2);
+                font-weight: 700;
+            }
+        }
+
+        menu {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-top: 2rem;
+
+            a:is(:link, :visited) {
+                align-items: center;
+                background: gray;
+                border-radius: 15px;
+                border-style: double;
+                border-color: rgba(20, 26, 26, 0.671);
+                color: var(--color-2);
+                display: flex;
+                gap: 0.6rem;
+                justify-content: start;
+                text-decoration: none;
+                transition: all 0.4s ease-in;
+                width: 280px;
+
+                span {
+                    align-items: center;
+                    background-color: #383636;
+                    border-radius: 15px 0 0 15px;
+                    color: #fff;
+                    display: flex;
+                    font-size: 1.2rem;
+                    height: 25px;
+                    justify-content: center;
+                    transition: all 0.4s ease-in;
+                    width: 40px;
+                }
+            }
+
+            a:is(:hover) {
+                background-color: rgb(58, 52, 52);
+                transform: translateX(10px);
+            }
+
+            a:is(:hover) span {
+                width: 60px;
+            }
+
+            a.inactive {
+                opacity: 0.4;
+                pointer-events: none;
+            }
+        }
+
+        section {
+            background-color: rgb(58, 57, 57);
+            border-radius: 4px;
+            padding: 1rem;
+            width: 740px;
+            align-items: center;
+
+            h3 {
+                color: #fffc;
+                font-size: 1.4rem;
+                font-weight: 400;
+                border-bottom: 2px dotted #fff6;
+                margin-bottom: 0.6 rem;
+            }
+
+            p {
+                color: #adff2f;
+                font-size: 1.4rem;
+            }
+
+            xmp {
+                background-color: #0009;
+                border-radius: 4px;
+                color: #adff2f;
+                padding: 10px 10px 20px 10px;
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
+header img {
+    border-radius: 50%;
+    object-fit: cover;
+    border: 10px solid #312121a4;
+    width: 300px;
+    height: 300px;
+}
+
+/*--------------------*/
+/* M A I N  M E N U*/
+/*--------------------*/
+
+
+body.oop {
+    background-color: #000000;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpolygon fill='%23222222' points='800 100 0 200 0 800 1600 800 1600 200'/%3E%3Cpolygon fill='%23444444' points='800 200 0 400 0 800 1600 800 1600 400'/%3E%3Cpolygon fill='%23666666' points='800 300 0 600 0 800 1600 800 1600 600'/%3E%3Cpolygon fill='%23888888' points='1600 800 800 400 0 800'/%3E%3Cpolygon fill='%23aaaaaa' points='1280 800 800 500 320 800'/%3E%3Cpolygon fill='%23cccccc' points='533.3 800 1066.7 800 800 600'/%3E%3Cpolygon fill='%23EEE' points='684.1 800 914.3 800 800 700'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+
+    main.main-php {
+        header.header-php {
+            h1 {
+                color: #fff;
+            }
+
+            h2 {
+                color: #fff;
+                border-bottom: none;
+                max-width: 80%;
+                font-weight: 400;
+            }
+        }
+
+        section {
+            width: 80%;
+
+            p {
+                color: #97afe4;
+                font-size: 1rem;
+                align-items: center;
+            }
+        }
+
+        menu {
+            a:is(:link, :visit) {
+                color: #f8f3f2;
+                font-weight: 500;
+
+                span {
+                    background-color: #445ca6;
+                }
+            }
+
+            h3 {
+                color: blue;
+            }
+        }
+    }
+}
