@@ -21,13 +21,22 @@ class UserFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+
+
+   public function definition(): array
     {
+        $gender = fake()->randomElement(['male', 'female']);
+        $url = "https://xsgames.co/randomusers/avatar.php?g=" . $gender;
+        $document = fake()->numerify('75######');
+        $nombreArchivo="{$document}.png";
+        $rutaDestino = public_path("images/{$nombreArchivo}");
+        copy($url, $rutaDestino);
         return [
-            'document' => fake()->numerify('75######'),
-            'fullname' => fake()->name(),
-            'gender' => fake()->randomElement(['Male', 'Female']),
-            'birthdate' => fake()->date(),
+            'document' => $document,
+            'fullname' => fake()->name($gender),
+            'gender' => $gender,
+            'birthdate' => fake()->dateTimeBetween('1976-01-01', '2006-12-31'),
+            'photo' => $nombreArchivo,
             'phone' => fake()->numerify('320#######'),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
