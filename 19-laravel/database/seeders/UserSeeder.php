@@ -3,40 +3,39 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Seeder;
 use App\Models\User;
 
-class UserSeeder extends Seeder
+class userSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        //-> with eloquent: ORM
-        $user = new User();
+        //-> with Eloquent: ORM
+        $user = new User;
         $user->document = 75000001;
-        $user->fullname = 'Jhon Wick';
+        $user->fullname = 'John Wick';
         $user->gender = 'Male';
-        $user->birthdate = '1975-1-10';
+        $user->birthdate = '1964-09-02';
         $user->phone = '3200000001';
-        $user->email = 'jhon@gmail.com';
+        $user->email = 'john@mail.com';
         $user->password = bcrypt('admin');
-        $user->role = 'admin';
+        $user->role = 'Admin';
         $user->save();
 
-        //Whit Array
-
+        //-> with Array: ORM
         DB::table('users')->insert([
-            'document' => 75000002,
-            'fullname' => 'Lara Croft',
-            'gender' => 'female',
-            'birthdate' => '1968-02-14',
-            'phone' => '32000002',
-            'email' => 'larac@gmailo.com',
+            'document'=> 75000002,
+            'fullname'=> 'Lara Croft',
+            'gender'=> 'Female',
+            'birthdate'=> '1968-02-14',
+            'phone'=> 3200000002,
+            'email'=> 'larac@mail.com',
             'password'=> bcrypt('12345'),
-            'created_at'=> now(),
+            'created_at' => now(),
             'updated_at'=> now()
         ]);
     }

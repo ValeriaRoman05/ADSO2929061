@@ -1,9 +1,10 @@
-
-
 @extends('layouts.app')
 @section('title', 'Larapets: Login')
+
+@include('partials.navbar')
+
 @section('content')
-    <section class="bg-[#0009] outline w-80 flex flex-col justify-center text-white items-center p-4 rounded-sm w-96">
+    <section class="bg-[#0009] outline w-96 flex flex-col justify-center text-white items-center p-4 rounded-sm">
         <h1 class="text-4xl flex gap-2 border-b-2 pb-2 mb-4">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-10" width="32" height="32" fill="currentColor"
                 viewBox="0 0 256 256">
@@ -17,21 +18,21 @@
             @csrf
             {{ session('status') }}
             <label class="label text-white">Email:</label>
-            <input class="input bg-[#0009] outline-1 focus:boder-white w-full"  type="text" name="email" value="{{ old('email') }}" placeholder="username@mail.com">
+            <input class="input bg-[#0009] outline-1 focus:border-white w-full" type="text" name="email" value="{{ old('email') }}" placeholder="username@mail.com">
             @error('email')
                 <small class="badge badge-error w-full">{{ $message }}</small>
             @enderror
             <label class="label text-white">Password:</label>
-            <input class="input bg-[#0009] outline-1 focus:boder-white w-full" type="password" name="password" placeholder="yoursecret">
+            <input class="input bg-[#0009] outline-1 focus:border-white w-full" type="password" name="password" placeholder="YouSecret">
             @error('password')
                 <small class="badge badge-error w-full">{{ $message }}</small>
             @enderror
             <button class="btn btn-outline mt-4">Login</button>
             @if (Route::has('password.request'))
-                <a class="text-sm mt-4 pb-1 border-b-1 w-fit text-white  hover:text-[#fff6]" 
+            <a class="text-sm mt-4 pb-1 border-b-1 w-fit text-white hover:text-[#fff6]"
                 href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
+                {{ __('Forgot your password?') }}
+            </a>
             @endif
         </form>
     </section>

@@ -3,45 +3,47 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Seeder;
 use App\Models\Pet;
 
-class PetSeeder extends Seeder
+class Petseeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $Pet = new Pet;
-        $Pet->name     = 'Angel';
-        $Pet->kind     = 'Dog';
-        $Pet->weight   = 10;
-        $Pet->age      = 8;
-        $Pet->breed    = 'pekines';
-        $Pet->location = 'colombia';
-        $Pet->description  ='Blanco';
-        $Pet->save();
+        //
+        $pet = new Pet;
+        $pet->name = 'Aaron';
+        $pet->kind = 'Cat';
+        $pet->weight = 10.5;
+        $pet->age = 6;
+        $pet->breed = 'Native';
+        $pet->location = 'Colombia';
+        $pet->description = 'hermoso';
+        $pet->save();
 
-         $Pet = new Pet;
-        $Pet->name     = 'Manchas';
-        $Pet->kind     = 'Cat';
-        $Pet->weight   = 10-5;
-        $Pet->age      = 10;
-        $Pet->breed    = 'calico';
-        $Pet->location = 'colombia';
-        $Pet->description  ='multicolor';
-        $Pet->save();
+        $pet = new Pet;
+        $pet->name = 'Lio';
+        $pet->kind = 'Cat';
+        $pet->weight = 6;
+        $pet->age = 7;
+        $pet->breed = 'Bicolor';
+        $pet->location = 'Colombia';
+        $pet->description = 'Tiene una bacteria que puede disminuir su peso y debilitar si salud';
+        $pet->save();
 
-         $Pet = new Pet;
-        $Pet->name     = 'pepa';
-        $Pet->kind     = 'pig';
-        $Pet->weight   = 9.5;
-        $Pet->age      = 5;
-        $Pet->breed    = 'prietran';
-        $Pet->location = 'colombia';
-        $Pet->description  ='delicioso';
-        $Pet->save();
+        $pet = new Pet;
+        $pet->name = 'Princesa';
+        $pet->kind = 'Dog';
+        $pet->weight = 7;
+        $pet->age = 14;
+        $pet->breed = 'Pincher';
+        $pet->location = 'Colombia';
+        $pet->description = 'Tiene cataratas en los ojos';
+        $pet->save();
+
     }
 }

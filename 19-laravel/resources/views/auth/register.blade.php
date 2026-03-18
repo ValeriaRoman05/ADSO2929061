@@ -1,8 +1,10 @@
-
 @extends('layouts.app')
 @section('title', 'Larapets: Register')
+
+@include('partials.navbar')
+
 @section('content')
-    <section class="bg-[#0009] outline w-96 flex flex-col justify-center text-white items-center p-4 rounded-sm">
+    <section class="bg-[#0009] outline w-80 md:w-fit flex flex-col justify-center text-white items-center p-4 rounded-sm">
         <h1 class="text-4xl flex gap-2 border-b-2 pb-2 mb-4">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-10" width="32" height="32" fill="currentColor"
                 viewBox="0 0 256 256">
@@ -12,11 +14,11 @@
             </svg>
             Register
         </h1>
-        <form  class="flex flex-col"  method="POST" action="{{ route('register') }} ">
+        <form class="flex flex-col md:flex-row gap-4 gap-x-4" method="POST" action="{{ route('register') }}">
             @csrf
-            <div class="w-full md-w80">
+            <div class="w-full md:w-80">
                 {{-- Document --}}
-                <label class="label text-white">Document:</label>
+                <label class="label text-white mt-4">Document:</label>
                 <input class="input bg-[#0009] outline-1 focus:border-white w-full" type="text" name="document"
                     value="{{ old('document') }}" placeholder="75000010">
                 @error('document')
@@ -24,7 +26,7 @@
                 @enderror
 
                 {{-- Ful Name --}}
-                <label class="label text-white">Full Name:</label>
+                <label class="label text-white mt-4">Full Name:</label>
                 <input class="input bg-[#0009] outline-1 focus:border-white w-full" type="text" name="fullname"
                     value="{{ old('fullname') }}" placeholder="Jeremias Springfield">
                 @error('fullname')
@@ -32,7 +34,7 @@
                 @enderror
 
                 {{-- Gender --}}
-                <label class="label text-white">Gender:</label>
+                <label class="label text-white mt-4">Gender:</label>
                 <select class="select bg-[#0009] outline-1 focus:border-white w-full" name="gender">
                     <option value="">Select...</option>
                     <option value="Female" @if(old('gender')=='Female') selected @endif>Female</option>
@@ -43,7 +45,7 @@
                 @enderror
 
                 {{-- Birthdate --}}
-                <label class="label text-white">Birthdate:</label>
+                <label class="label text-white mt-4">Birthdate:</label>
                 <input class="input bg-[#0009] outline-1 focus:border-white w-full" type="text" name="birthdate"
                     value="{{ old('birthdate') }}" placeholder="1990-12-25">
                 @error('birthdate')
@@ -51,9 +53,9 @@
                 @enderror
 
             </div>
-            <div class="w-full md-w80">
+            <div class="w-full md:w-80">
                 {{-- Phone --}}
-                <label class="label text-white">Phone:</label>
+                <label class="label text-white mt-4">Phone:</label>
                 <input class="input bg-[#0009] outline-1 focus:border-white w-full" type="text" name="phone"
                     value="{{ old('phone') }}" placeholder="320000010">
                 @error('phone')
@@ -61,7 +63,7 @@
                 @enderror
 
                 {{-- email --}}
-                <label class="label text-white">E-mail:</label>
+                <label class="label text-white mt-4">E-mail:</label>
                 <input class="input bg-[#0009] outline-1 focus:border-white w-full" type="text" name="email"
                     value="{{ old('email') }}" placeholder="jeremias@mail.com">
                 @error('email')
@@ -69,7 +71,7 @@
                 @enderror
 
                 {{-- Password --}}
-                <label class="label text-white">Password:</label>
+                <label class="label text-white mt-4">Password:</label>
                 <input class="input bg-[#0009] outline-1 focus:border-white w-full" type="password" name="password"
                     placeholder="yourSecret_123">
                 @error('password')
@@ -77,15 +79,13 @@
                 @enderror
 
                 {{-- Password Confirmation--}}
-                <label class="label text-white">Password:</label>
+                <label class="label text-white mt-4">Password Confirmation:</label>
                 <input class="input bg-[#0009] outline-1 focus:border-white w-full" type="password"
-                    name="Password_confirmation" placeholder="your Secret again">
-                @error('Password_confirmation')
-                    <small class="badge badge-error w-full">{{ $message }}</small>
-                @enderror
+                    name="password_confirmation" placeholder="your Secret again">
 
-                <button class="btn btn-outline">Register</button>
+                <button class="btn btn-outline mt-4 w-full">Register</button>
             </div>
+
         </form>
     </section>
 @endsection

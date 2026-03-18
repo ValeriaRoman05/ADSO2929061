@@ -15,4 +15,18 @@ class Adoption extends Model
         'user_id',
         'pet_id',
     ];
+
+        //Relationships
+    //Adoption belongs to User
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+            //Relationships
+    //Adoption belongs to Pet
+
+    public function pet(){
+        return $this->belongsTo(Pet::class);
+    }
 }
