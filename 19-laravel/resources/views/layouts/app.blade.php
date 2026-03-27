@@ -10,6 +10,8 @@
     <link href="{{asset('css/daisyui5.css')}}" rel="stylesheet" type="text/css" />
     {{-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> --}}
     <script src={{asset('js/tailwindcss4.js')}}></script>
+    <script src={{asset('js/jquery-3.7.1.min.js')}}></script>
+    <script src={{asset('js/sweetalert2@11.js')}}></script>
 </head>
 
 @auth
@@ -25,6 +27,8 @@
     <main class="p-12 flex flex-col gap-2 justify-center items-center min-h-dvh">
         @yield('content')
     </main>
+
+    @yield('js')
 </body>
 
 </html>
