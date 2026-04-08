@@ -8,7 +8,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" class="size-10" fill="currentColor" viewBox="0 0 256 256">
             <path
                 d="M244.8,150.4a8,8,0,0,1-11.2-1.6A51.6,51.6,0,0,0,192,128a8,8,0,0,1-7.37-4.89,8,8,0,0,1,0-6.22A8,8,0,0,1,192,112a24,24,0,1,0-23.24-30,8,8,0,1,1-15.5-4A40,40,0,1,1,219,117.51a67.94,67.94,0,0,1,27.43,21.68A8,8,0,0,1,244.8,150.4ZM190.92,212a8,8,0,1,1-13.84,8,57,57,0,0,0-98.16,0,8,8,0,1,1-13.84-8,72.06,72.06,0,0,1,33.74-29.92,48,48,0,1,1,58.36,0A72.06,72.06,0,0,1,190.92,212ZM128,176a32,32,0,1,0-32-32A32,32,0,0,0,128,176ZM72,120a8,8,0,0,0-8-8A24,24,0,1,1,87.24,82a8,8,0,1,0,15.5-4A40,40,0,1,0,37,117.51,67.94,67.94,0,0,0,9.6,139.19a8,8,0,1,0,12.8,9.61A51.6,51.6,0,0,1,64,128,8,8,0,0,0,72,120Z">
-            </path> 
+            </path>
         </svg>
         Module Users
     </h1>
@@ -83,7 +83,7 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="datalist">
                 @foreach ($users as $user)
                     <tr class="text-white even:bg-blue-900">
                         <td class="hidden md:table-cell">{{ $user->id }}</td>
@@ -151,6 +151,15 @@
 
 @section('js')
     <script>
+
+        //import file
+        $('.btn-import').click(function (e) {
+            $('#file').click()
+        })
+
+        $('#file').change(function (e) {
+            $(this).parent().submit();
+        })
         //Mensajes
         @if(session('message'))
             Swal.fire({
@@ -164,21 +173,61 @@
 
         //Delete 
         $('.btn-delete').click(function () {
-
-            $fullname=$(this).attr('data-fullname')
+            $fullname = $(this).attr('data-fullname')
             Swal.fire({
                 title: "Are you sure?",
-                text: "The User: "+ $fullname +"  will be deleted!",
+                text: "The User: " + $fullname + "  will be deleted!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
                 confirmButtonText: "Yes, delete it!"
             }).then((result) => {
-                if (result.isConfirmed){
+                if (result.isConfirmed) {
                     $(this).next().submit()
                 }
             });
+        })
+
+
+        // Search - - - - - - - - - - - - - - - -
+        function debounce(func, wait) {
+            let timeout
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout)
+                    func(...args)
+                };
+                clearTimeout(timeout)
+                timeout = setTimeout(later, wait)
+            }
+        }
+        const search = debounce(function (query) {
+
+            $token = $('input[name=_token]').val()
+
+            $.post("search/users", { 'q': query, '_token': $token },
+                function (data) {
+                    $('.datalist').html(data).hide().fadeIn(1000)
+                }
+            )
+        }, 500)
+        $('body').on('input', '#qsearch', function (event) {
+            event.preventDefault()
+            const query = $(this).val()
+
+            $('.datalist').html(`<tr>
+                                            <td colspan="7" class="text-center py-18">
+                                                <span class="loading loading-spinner loading-xl"></span>
+                                            </td>
+                                        </tr>`)
+            if (query != '') {
+                search(query)
+            } else {
+                setTimeout(() => {
+                    window.location.replace('users')
+                }, 500)
+            }
         })
     </script>
 @endsection

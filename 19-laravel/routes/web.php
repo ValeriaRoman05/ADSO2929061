@@ -78,20 +78,23 @@ Route::get('view/pet/{id}',function(){
     return view('showpet')->with('pet',$pet);
 });
 
+//Middleware Auth
 Route::middleware('auth')->group(function() {
     Route::resources([
         'users'=> UserController::class
         //'pets', PetController::class
         //'adoptions', AdoptionController::class
     ]);
-    //export PDF
-    Route::get('export\users\pdf', [UserController::class, 'pdf']);
-    //export Excel
-     Route::get('export\users\excel', [UserController::class, 'excel']);
-      //import excel
-     Route::post('import/users', [UserController::class, 'import']);
-     //search
-     Route::post('search/users', [UserController::class, 'seacrh']);
+
+    //Exports
+    Route::get('export/users/pdf',[UserController::class,'pdf']);
+    Route::get('export/users/excel',[UserController::class,'excel']);
+
+    //Import Excel
+    Route::POST('import/users',[UserController::class,'import']);
+
+    //search
+    Route::post('search/users',[UserController::class,'search']);
 });
 
 
